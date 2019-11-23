@@ -42,7 +42,7 @@ namespace SoTietKiem.Data
 
                 entity.Property(e => e.NgayRut).HasColumnType("datetime");
 
-                entity.Property(e => e.NghiepVu).HasColumnType("text");
+                entity.Property(e => e.NghiepVu).HasColumnType("ntext");
 
                 entity.HasOne(d => d.PhieuGuiRutTien)
                     .WithOne(p => p.ChiTietSoTietKiem)
@@ -60,7 +60,7 @@ namespace SoTietKiem.Data
 
             modelBuilder.Entity<PhieuGuiRutTien>(entity =>
             {
-                entity.Property(e => e.KhachHang).HasColumnType("text");
+                entity.Property(e => e.KhachHang).HasColumnType("ntext");
 
                 entity.Property(e => e.Mskh).HasColumnName("MSKH");
 
@@ -80,7 +80,7 @@ namespace SoTietKiem.Data
 
                 entity.Property(e => e.Ngay).HasColumnType("datetime");
 
-                entity.Property(e => e.NoiDung).HasColumnType("text");
+                entity.Property(e => e.NoiDung).HasColumnType("ntext");
             });
 
             modelBuilder.Entity<SoTK>(entity =>
@@ -93,7 +93,7 @@ namespace SoTietKiem.Data
                     .HasColumnName("CMND")
                     .HasMaxLength(13);
 
-                entity.Property(e => e.DiaChi).HasColumnType("text");
+                entity.Property(e => e.DiaChi).HasColumnType("ntext");
 
                 entity.Property(e => e.KhachHang).HasMaxLength(50);
 

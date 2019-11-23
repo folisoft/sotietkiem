@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoTietKiem.Data;
 
-namespace SoTietKiem.Migrations.Database
+namespace SoTietKiem.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     partial class DatabaseContextModelSnapshot : ModelSnapshot
@@ -47,7 +47,7 @@ namespace SoTietKiem.Migrations.Database
                         .HasColumnType("datetime");
 
                     b.Property<string>("NghiepVu")
-                        .HasColumnType("text");
+                        .HasColumnType("ntext");
 
                     b.Property<double?>("SoDuCuoiKy")
                         .HasColumnType("float");
@@ -105,7 +105,7 @@ namespace SoTietKiem.Migrations.Database
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("KhachHang")
-                        .HasColumnType("text");
+                        .HasColumnType("ntext");
 
                     b.Property<int?>("Mskh")
                         .HasColumnName("MSKH")
@@ -136,7 +136,7 @@ namespace SoTietKiem.Migrations.Database
                         .HasColumnType("datetime");
 
                     b.Property<string>("NoiDung")
-                        .HasColumnType("text");
+                        .HasColumnType("ntext");
 
                     b.HasKey("Msqd");
 
@@ -157,7 +157,7 @@ namespace SoTietKiem.Migrations.Database
                         .HasMaxLength(13);
 
                     b.Property<string>("DiaChi")
-                        .HasColumnType("text");
+                        .HasColumnType("ntext");
 
                     b.Property<string>("KhachHang")
                         .HasColumnType("nvarchar(50)")
