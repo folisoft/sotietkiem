@@ -7,10 +7,13 @@ declare interface RouteInfo {
     icon: string;
     class: string;
 }
+
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'ni-tv-2 text-primary', class: '' },
-    { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/tables', title: 'Tables',  icon:'ni-bullet-list-67 text-red', class: '' },
+    { path: '/thongke', title: 'Thống kê',  icon: 'ni-chart-bar-32 text-primary', class: '' },
+    { path: '/ds-sotk', title: 'Tra cứu sổ tiết kiệm',  icon: 'ni-collection text-info', class: '' },
+    { path: '/ds-sotk', title: 'Mở sổ tiết kiệm',  icon: 'ni-collection text-info', class: '' },
+    { path: '/ds-sotk', title: 'Lập phiếu rút tiền',  icon: 'ni-collection text-info', class: '' },
+    { path: '/ds-sotk', title: 'Lập phiếu gửi tiền',  icon: 'ni-collection text-info', class: '' },
     { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
     { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
 ];
@@ -25,12 +28,18 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
 
+  currentRoute: string;
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.getCurrentRouteURL();
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });
+  }
+
+  getCurrentRouteURL() {
+    this.currentRoute = this.router.url;
   }
 }

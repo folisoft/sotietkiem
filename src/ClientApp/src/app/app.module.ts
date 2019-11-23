@@ -17,10 +17,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
      AppComponent,
-     //NavMenuComponent,
-     //HomeComponent,
-     //CounterComponent,
-     //FetchDataComponent
      AdminLayoutComponent,
      AuthLayoutComponent,
   ],

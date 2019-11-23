@@ -9,6 +9,7 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
+import { DanhSachSoTKComponent } from 'src/app/pages/danhsach-sotk/danhsach-sotk.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
     DashboardComponent,
     UserProfileComponent,
     TablesComponent,
+    DanhSachSoTKComponent
   ]
 })
 
