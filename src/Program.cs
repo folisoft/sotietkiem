@@ -13,10 +13,10 @@ namespace SoTietKiem
     {
         public static void Main(string[] args)
         {
-            InitWebHost(args).Build().Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder InitWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
