@@ -5,5 +5,6 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
+    { path: 'user-profile', component: DashboardComponent },
     { path: 'tables',         component: TablesComponent },
 ];
