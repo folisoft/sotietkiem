@@ -5,14 +5,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
-import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
+// import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
+// import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ServiceModule } from './service/service.module';
 
 @NgModule({
   declarations: [
@@ -29,13 +30,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     FormsModule,
     NgbModule,
-    ApiAuthorizationModule,
     RouterModule,
     ComponentsModule,
     AppRoutingModule,
+    ServiceModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+
   ],
   bootstrap: [AppComponent]
 })

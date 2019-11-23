@@ -9,6 +9,7 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
+import { QuydinhComponent } from 'src/app/pages/quydinh/quydinh.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
   declarations: [
     DashboardComponent,
     UserProfileComponent,
+    QuydinhComponent,
     TablesComponent,
   ]
 })

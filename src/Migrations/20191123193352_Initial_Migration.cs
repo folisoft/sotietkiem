@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SoTietKiem.Migrations.Database
+namespace SoTietKiem.Migrations
 {
-    public partial class AddTables : Migration
+    public partial class Initial_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace SoTietKiem.Migrations.Database
                     MSQD = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ngay = table.Column<DateTime>(type: "datetime", nullable: true),
-                    NoiDung = table.Column<string>(type: "text", nullable: true)
+                    NoiDung = table.Column<string>(type: "ntext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,7 +46,7 @@ namespace SoTietKiem.Migrations.Database
                     LoaiTietKiemId = table.Column<int>(nullable: true),
                     KhachHang = table.Column<string>(maxLength: 50, nullable: true),
                     CMND = table.Column<string>(maxLength: 13, nullable: true),
-                    DiaChi = table.Column<string>(type: "text", nullable: true),
+                    DiaChi = table.Column<string>(type: "ntext", nullable: true),
                     NgayMoSo = table.Column<DateTime>(type: "datetime", nullable: true),
                     SoTienGui = table.Column<double>(nullable: true),
                     NgayDongSo = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -70,7 +70,7 @@ namespace SoTietKiem.Migrations.Database
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MSKH = table.Column<int>(nullable: true),
-                    KhachHang = table.Column<string>(type: "text", nullable: true),
+                    KhachHang = table.Column<string>(type: "ntext", nullable: true),
                     SoTien = table.Column<double>(nullable: true),
                     Ngay = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
@@ -103,7 +103,7 @@ namespace SoTietKiem.Migrations.Database
                     SoNgayLaiSuat = table.Column<int>(nullable: true),
                     LaiSuatNgay = table.Column<double>(nullable: true),
                     SoDuCuoiKy = table.Column<double>(nullable: true),
-                    NghiepVu = table.Column<string>(type: "text", nullable: true)
+                    NghiepVu = table.Column<string>(type: "ntext", nullable: true)
                 },
                 constraints: table =>
                 {
