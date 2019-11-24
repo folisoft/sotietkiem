@@ -1,0 +1,242 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--5">
+  <!-- Table Doanh So Ngay-->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-md-6">
+              <h3 class="mb-0">{{TableDoanhSo}}</h3>
+            </div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="Chọn ngày" type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-drop table-hover">
+          <table class="table align-items-center table-flush ">
+            <thead class="thead-light">
+              <tr>
+                <th *ngFor="let colName of columnNameDoanhSo" scope="col">{{colName.name}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <a (click)="lapPhieuGuiTien()" class="avatar rounded-circle mr-3">
+                      <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
+                    </a>
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Argon Design System</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  $2,500 USD
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-warning"></i> pending
+                  </span>
+                </td>
+                <td>
+                  <div class="avatar-group">
+                    <a (click)="lapPhieuGuiTien()" class="avatar avatar-sm" data-toggle="tooltip"
+                      data-original-title="Ryan Tompson">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-1-800x800.jpg" class="rounded-circle">
+                    </a>
+                    <a (click)="lapPhieuGuiTien()" class="avatar avatar-sm" data-toggle="tooltip"
+                      data-original-title="Romina Hadid">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-2-800x800.jpg" class="rounded-circle">
+                    </a>
+                    <a (click)="lapPhieuGuiTien()" class="avatar avatar-sm" data-toggle="tooltip"
+                      data-original-title="Alexander Smith">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-3-800x800.jpg" class="rounded-circle">
+                    </a>
+                    <a (click)="lapPhieuGuiTien()" class="avatar avatar-sm" data-toggle="tooltip"
+                      data-original-title="Jessica Doe">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="mr-2">60%</span>
+                    <div>
+                      <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                          aria-valuemax="100" style="width: 60%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" (click)="lapPhieuGuiTien()" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" (click)="lapPhieuGuiTien()">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="lapPhieuGuiTien()">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" (click)="lapPhieuGuiTien()">3</a></li>
+              <li class="page-item">
+                <a class="page-link" (click)="lapPhieuGuiTien()">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table Doanh So Mo/Dong -->
+
+  <div class="row mt-5">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row">
+            <div class="col-md-6">
+              <h3 class="mb-0">{{TableMoDong}}</h3>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" id="loaitietkiem">
+                      <option>Chọn loại tiết kiệm</option>
+                      <option>Không kỳ hạn</option>
+                      <option>3 Tháng</option>
+                      <option>6 Tháng</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="Chọn ngày" type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-drop table-hover">
+          <table class="table align-items-center table-flush ">
+            <thead class="thead-light">
+              <tr>
+                <th *ngFor="let colName of columnNameMoDong" scope="col">{{colName.name}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <div class="media align-items-center">
+                    <a (click)="lapPhieuGuiTien()" class="avatar rounded-circle mr-3">
+                      <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
+                    </a>
+                    <div class="media-body">
+                      <span class="mb-0 text-sm">Argon Design System</span>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  $2,500 USD
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-warning"></i> pending
+                  </span>
+                </td>
+                <td>
+                  <div class="avatar-group">
+                    <a (click)="lapPhieuGuiTien()" class="avatar avatar-sm" data-toggle="tooltip"
+                      data-original-title="Ryan Tompson">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-1-800x800.jpg" class="rounded-circle">
+                    </a>
+                    <a (click)="lapPhieuGuiTien()" class="avatar avatar-sm" data-toggle="tooltip"
+                      data-original-title="Romina Hadid">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-2-800x800.jpg" class="rounded-circle">
+                    </a>
+                    <a (click)="lapPhieuGuiTien()" class="avatar avatar-sm" data-toggle="tooltip"
+                      data-original-title="Alexander Smith">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-3-800x800.jpg" class="rounded-circle">
+                    </a>
+                    <a (click)="lapPhieuGuiTien()" class="avatar avatar-sm" data-toggle="tooltip"
+                      data-original-title="Jessica Doe">
+                      <img alt="Image placeholder" src="../assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <span class="mr-2">60%</span>
+                    <div>
+                      <div class="progress">
+                        <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                          aria-valuemax="100" style="width: 60%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer py-4">
+          <nav aria-label="...">
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" (click)="lapPhieuGuiTien()" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" (click)="lapPhieuGuiTien()">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="lapPhieuGuiTien()">2 <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="page-item"><a class="page-link" (click)="lapPhieuGuiTien()">3</a></li>
+              <li class="page-item">
+                <a class="page-link" (click)="lapPhieuGuiTien()">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
