@@ -9,6 +9,10 @@ namespace SoTietKiem.Data
 {
     public class DatabaseContext: DbContext
     {
+        public DatabaseContext()
+        {
+        }
+
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
             : base(options)
         {
@@ -18,7 +22,7 @@ namespace SoTietKiem.Data
         public virtual DbSet<LoaiTietKiem> LoaiTietKiem { get; set; }
         public virtual DbSet<PhieuGuiRutTien> PhieuGuiRutTien { get; set; }
         public virtual DbSet<QuyDinh> QuyDinh { get; set; }
-        public virtual DbSet<SoTK> SoTK { get; set; }
+        public virtual DbSet<SoTk> SoTk { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,13 +40,15 @@ namespace SoTietKiem.Data
 
                 entity.Property(e => e.PhieuGuiRutTienId).ValueGeneratedNever();
 
-                entity.Property(e => e.Mskh).HasColumnName("MSKH");
+                entity.Property(e => e.Mskh)
+                    .HasColumnName("MSKH")
+                    .HasMaxLength(5);
 
                 entity.Property(e => e.NgayGui).HasColumnType("datetime");
 
                 entity.Property(e => e.NgayRut).HasColumnType("datetime");
 
-                entity.Property(e => e.NghiepVu).HasColumnType("text");
+                entity.Property(e => e.NghiepVu).HasMaxLength(50);
 
                 entity.HasOne(d => d.PhieuGuiRutTien)
                     .WithOne(p => p.ChiTietSoTietKiem)
@@ -50,61 +56,71 @@ namespace SoTietKiem.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ChiTietSoTietKiem_PhieuGuiRutTien");
             });
-
             modelBuilder.Entity<LoaiTietKiem>(entity =>
             {
-                entity.Property(e => e.LoaiTietKiem1).HasColumnName("LoaiTietKiem");
+                entity.Property(e => e.LoaiTietKiem1)
+                    .HasColumnName("LoaiTietKiem")
+                    .HasMaxLength(255);
 
                 entity.Property(e => e.NgayHieuLuc).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<PhieuGuiRutTien>(entity =>
             {
-                entity.Property(e => e.KhachHang).HasColumnType("text");
+                entity.Property(e => e.KhachHang).HasMaxLength(255);
 
-                entity.Property(e => e.Mskh).HasColumnName("MSKH");
+                entity.Property(e => e.Mskh)
+                    .HasColumnName("MSKH")
+                    .HasMaxLength(5);
 
                 entity.Property(e => e.Ngay).HasColumnType("datetime");
 
                 entity.HasOne(d => d.MskhNavigation)
                     .WithMany(p => p.PhieuGuiRutTien)
                     .HasForeignKey(d => d.Mskh)
-                    .HasConstraintName("FK_PhieuGuiRutTien_SoTietKiem");
+                    .HasConstraintName("FK_PhieuGuiRutTien_SoTK");
             });
 
             modelBuilder.Entity<QuyDinh>(entity =>
             {
                 entity.HasKey(e => e.Msqd);
 
-                entity.Property(e => e.Msqd).HasColumnName("MSQD");
+                entity.Property(e => e.Msqd)
+                    .HasColumnName("MSQD")
+                    .HasMaxLength(3);
 
                 entity.Property(e => e.Ngay).HasColumnType("datetime");
 
-                entity.Property(e => e.NoiDung).HasColumnType("text");
+                entity.Property(e => e.NoiDung).HasMaxLength(255);
             });
 
-            modelBuilder.Entity<SoTK>(entity =>
+            modelBuilder.Entity<SoTk>(entity =>
             {
                 entity.HasKey(e => e.Mskh);
 
-                entity.Property(e => e.Mskh).HasColumnName("MSKH");
+                entity.ToTable("SoTK");
+
+                entity.Property(e => e.Mskh)
+                    .HasColumnName("MSKH")
+                    .HasMaxLength(5);
 
                 entity.Property(e => e.Cmnd)
                     .HasColumnName("CMND")
                     .HasMaxLength(13);
 
-                entity.Property(e => e.DiaChi).HasColumnType("text");
+                entity.Property(e => e.DiaChi).HasMaxLength(255);
 
-                entity.Property(e => e.KhachHang).HasMaxLength(50);
+                entity.Property(e => e.KhachHang).HasMaxLength(255);
 
                 entity.Property(e => e.NgayDongSo).HasColumnType("datetime");
 
                 entity.Property(e => e.NgayMoSo).HasColumnType("datetime");
 
                 entity.HasOne(d => d.LoaiTietKiem)
-                    .WithMany(p => p.SoTietKiem)
+                    .WithMany(p => p.SoTk)
                     .HasForeignKey(d => d.LoaiTietKiemId)
-                    .HasConstraintName("FK_SoTietKiem_LoaiTietKiem");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SoTK_LoaiTietKiem");
             });
         }
     }

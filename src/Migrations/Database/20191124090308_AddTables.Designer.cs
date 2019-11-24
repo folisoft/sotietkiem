@@ -10,7 +10,7 @@ using SoTietKiem.Data;
 namespace SoTietKiem.Migrations.Database
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20191123104400_AddTables")]
+    [Migration("20191124090308_AddTables")]
     partial class AddTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,9 +38,10 @@ namespace SoTietKiem.Migrations.Database
                     b.Property<int?>("LoaiTietKiemId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Mskh")
+                    b.Property<string>("Mskh")
                         .HasColumnName("MSKH")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(5)")
+                        .HasMaxLength(5);
 
                     b.Property<DateTime?>("NgayGui")
                         .HasColumnType("datetime");
@@ -49,7 +50,8 @@ namespace SoTietKiem.Migrations.Database
                         .HasColumnType("datetime");
 
                     b.Property<string>("NghiepVu")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<double?>("SoDuCuoiKy")
                         .HasColumnType("float");
@@ -87,9 +89,10 @@ namespace SoTietKiem.Migrations.Database
                     b.Property<double?>("LaiSuat")
                         .HasColumnType("float");
 
-                    b.Property<int?>("LoaiTietKiem1")
+                    b.Property<string>("LoaiTietKiem1")
                         .HasColumnName("LoaiTietKiem")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<DateTime?>("NgayHieuLuc")
                         .HasColumnType("datetime");
@@ -107,11 +110,13 @@ namespace SoTietKiem.Migrations.Database
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("KhachHang")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
-                    b.Property<int?>("Mskh")
+                    b.Property<string>("Mskh")
                         .HasColumnName("MSKH")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(5)")
+                        .HasMaxLength(5);
 
                     b.Property<DateTime?>("Ngay")
                         .HasColumnType("datetime");
@@ -128,30 +133,29 @@ namespace SoTietKiem.Migrations.Database
 
             modelBuilder.Entity("SoTietKiem.Models.QuyDinh", b =>
                 {
-                    b.Property<int>("Msqd")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Msqd")
                         .HasColumnName("MSQD")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("nvarchar(3)")
+                        .HasMaxLength(3);
 
                     b.Property<DateTime?>("Ngay")
                         .HasColumnType("datetime");
 
                     b.Property<string>("NoiDung")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.HasKey("Msqd");
 
                     b.ToTable("QuyDinh");
                 });
 
-            modelBuilder.Entity("SoTietKiem.Models.SoTK", b =>
+            modelBuilder.Entity("SoTietKiem.Models.SoTk", b =>
                 {
-                    b.Property<int>("Mskh")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Mskh")
                         .HasColumnName("MSKH")
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("nvarchar(5)")
+                        .HasMaxLength(5);
 
                     b.Property<string>("Cmnd")
                         .HasColumnName("CMND")
@@ -159,13 +163,14 @@ namespace SoTietKiem.Migrations.Database
                         .HasMaxLength(13);
 
                     b.Property<string>("DiaChi")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<string>("KhachHang")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
-                    b.Property<int?>("LoaiTietKiemId")
+                    b.Property<int>("LoaiTietKiemId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("NgayDongSo")
@@ -198,18 +203,19 @@ namespace SoTietKiem.Migrations.Database
 
             modelBuilder.Entity("SoTietKiem.Models.PhieuGuiRutTien", b =>
                 {
-                    b.HasOne("SoTietKiem.Models.SoTK", "MskhNavigation")
+                    b.HasOne("SoTietKiem.Models.SoTk", "MskhNavigation")
                         .WithMany("PhieuGuiRutTien")
                         .HasForeignKey("Mskh")
-                        .HasConstraintName("FK_PhieuGuiRutTien_SoTietKiem");
+                        .HasConstraintName("FK_PhieuGuiRutTien_SoTK");
                 });
 
-            modelBuilder.Entity("SoTietKiem.Models.SoTK", b =>
+            modelBuilder.Entity("SoTietKiem.Models.SoTk", b =>
                 {
                     b.HasOne("SoTietKiem.Models.LoaiTietKiem", "LoaiTietKiem")
-                        .WithMany("SoTietKiem")
+                        .WithMany("SoTk")
                         .HasForeignKey("LoaiTietKiemId")
-                        .HasConstraintName("FK_SoTietKiem_LoaiTietKiem");
+                        .HasConstraintName("FK_SoTK_LoaiTietKiem")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

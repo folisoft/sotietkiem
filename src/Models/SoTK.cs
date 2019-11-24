@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace SoTietKiem.Models
 {
-    public partial class SoTK
+    public partial class SoTk
     {
-        public SoTK()
+        public SoTk()
         {
             PhieuGuiRutTien = new HashSet<PhieuGuiRutTien>();
         }
 
-        public int Mskh { get; set; }
-        public int? LoaiTietKiemId { get; set; }
+        public string Mskh { get; set; }
+        public int LoaiTietKiemId { get; set; }
         public string KhachHang { get; set; }
         public string Cmnd { get; set; }
         public string DiaChi { get; set; }

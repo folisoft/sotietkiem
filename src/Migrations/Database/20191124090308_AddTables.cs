@@ -13,7 +13,7 @@ namespace SoTietKiem.Migrations.Database
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LoaiTietKiem = table.Column<int>(nullable: true),
+                    LoaiTietKiem = table.Column<string>(maxLength: 255, nullable: true),
                     LaiSuat = table.Column<double>(nullable: true),
                     NgayHieuLuc = table.Column<DateTime>(type: "datetime", nullable: true),
                     KyHan = table.Column<int>(nullable: true)
@@ -27,10 +27,9 @@ namespace SoTietKiem.Migrations.Database
                 name: "QuyDinh",
                 columns: table => new
                 {
-                    MSQD = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MSQD = table.Column<string>(maxLength: 3, nullable: false),
                     Ngay = table.Column<DateTime>(type: "datetime", nullable: true),
-                    NoiDung = table.Column<string>(type: "text", nullable: true)
+                    NoiDung = table.Column<string>(maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,12 +40,11 @@ namespace SoTietKiem.Migrations.Database
                 name: "SoTK",
                 columns: table => new
                 {
-                    MSKH = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    LoaiTietKiemId = table.Column<int>(nullable: true),
-                    KhachHang = table.Column<string>(maxLength: 50, nullable: true),
+                    MSKH = table.Column<string>(maxLength: 5, nullable: false),
+                    LoaiTietKiemId = table.Column<int>(nullable: false),
+                    KhachHang = table.Column<string>(maxLength: 255, nullable: true),
                     CMND = table.Column<string>(maxLength: 13, nullable: true),
-                    DiaChi = table.Column<string>(type: "text", nullable: true),
+                    DiaChi = table.Column<string>(maxLength: 255, nullable: true),
                     NgayMoSo = table.Column<DateTime>(type: "datetime", nullable: true),
                     SoTienGui = table.Column<double>(nullable: true),
                     NgayDongSo = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -56,7 +54,7 @@ namespace SoTietKiem.Migrations.Database
                 {
                     table.PrimaryKey("PK_SoTK", x => x.MSKH);
                     table.ForeignKey(
-                        name: "FK_SoTietKiem_LoaiTietKiem",
+                        name: "FK_SoTK_LoaiTietKiem",
                         column: x => x.LoaiTietKiemId,
                         principalTable: "LoaiTietKiem",
                         principalColumn: "Id",
@@ -69,8 +67,8 @@ namespace SoTietKiem.Migrations.Database
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MSKH = table.Column<int>(nullable: true),
-                    KhachHang = table.Column<string>(type: "text", nullable: true),
+                    MSKH = table.Column<string>(maxLength: 5, nullable: true),
+                    KhachHang = table.Column<string>(maxLength: 255, nullable: true),
                     SoTien = table.Column<double>(nullable: true),
                     Ngay = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
@@ -78,7 +76,7 @@ namespace SoTietKiem.Migrations.Database
                 {
                     table.PrimaryKey("PK_PhieuGuiRutTien", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PhieuGuiRutTien_SoTietKiem",
+                        name: "FK_PhieuGuiRutTien_SoTK",
                         column: x => x.MSKH,
                         principalTable: "SoTK",
                         principalColumn: "MSKH",
@@ -90,7 +88,7 @@ namespace SoTietKiem.Migrations.Database
                 columns: table => new
                 {
                     PhieuGuiRutTienId = table.Column<int>(nullable: false),
-                    MSKH = table.Column<int>(nullable: true),
+                    MSKH = table.Column<string>(maxLength: 5, nullable: true),
                     NgayGui = table.Column<DateTime>(type: "datetime", nullable: true),
                     SoTienGui = table.Column<double>(nullable: true),
                     NgayRut = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -103,7 +101,7 @@ namespace SoTietKiem.Migrations.Database
                     SoNgayLaiSuat = table.Column<int>(nullable: true),
                     LaiSuatNgay = table.Column<double>(nullable: true),
                     SoDuCuoiKy = table.Column<double>(nullable: true),
-                    NghiepVu = table.Column<string>(type: "text", nullable: true)
+                    NghiepVu = table.Column<string>(maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
