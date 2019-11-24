@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoTietKiem.Data;
 
-namespace SoTietKiem.Migrations.Database
+namespace SoTietKiem.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     partial class DatabaseContextModelSnapshot : ModelSnapshot
@@ -140,8 +140,8 @@ namespace SoTietKiem.Migrations.Database
                         .HasColumnType("datetime");
 
                     b.Property<string>("NoiDung")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.HasKey("Msqd");
 
