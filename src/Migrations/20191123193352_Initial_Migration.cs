@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SoTietKiem.Migrations.Database
+namespace SoTietKiem.Migrations
 {
-    public partial class AddTables : Migration
+    public partial class Initial_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,11 @@ namespace SoTietKiem.Migrations.Database
                 {
                     MSQD = table.Column<string>(maxLength: 3, nullable: false),
                     Ngay = table.Column<DateTime>(type: "datetime", nullable: true),
+<<<<<<< HEAD:src/Migrations/20191124090308_AddTables.cs
                     NoiDung = table.Column<string>(maxLength: 255, nullable: true)
+=======
+                    NoiDung = table.Column<string>(type: "ntext", nullable: true)
+>>>>>>> d8379b457a26bb3903a865a43aa33e2abb374555:src/Migrations/20191123193352_Initial_Migration.cs
                 },
                 constraints: table =>
                 {
@@ -44,7 +48,11 @@ namespace SoTietKiem.Migrations.Database
                     LoaiTietKiemId = table.Column<int>(nullable: false),
                     KhachHang = table.Column<string>(maxLength: 255, nullable: true),
                     CMND = table.Column<string>(maxLength: 13, nullable: true),
+<<<<<<< HEAD:src/Migrations/20191124090308_AddTables.cs
                     DiaChi = table.Column<string>(maxLength: 255, nullable: true),
+=======
+                    DiaChi = table.Column<string>(type: "ntext", nullable: true),
+>>>>>>> d8379b457a26bb3903a865a43aa33e2abb374555:src/Migrations/20191123193352_Initial_Migration.cs
                     NgayMoSo = table.Column<DateTime>(type: "datetime", nullable: true),
                     SoTienGui = table.Column<double>(nullable: true),
                     NgayDongSo = table.Column<DateTime>(type: "datetime", nullable: true),
@@ -67,8 +75,13 @@ namespace SoTietKiem.Migrations.Database
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+<<<<<<< HEAD:src/Migrations/20191124090308_AddTables.cs
                     MSKH = table.Column<string>(maxLength: 5, nullable: true),
                     KhachHang = table.Column<string>(maxLength: 255, nullable: true),
+=======
+                    MSKH = table.Column<int>(nullable: true),
+                    KhachHang = table.Column<string>(type: "ntext", nullable: true),
+>>>>>>> d8379b457a26bb3903a865a43aa33e2abb374555:src/Migrations/20191123193352_Initial_Migration.cs
                     SoTien = table.Column<double>(nullable: true),
                     Ngay = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
@@ -101,7 +114,11 @@ namespace SoTietKiem.Migrations.Database
                     SoNgayLaiSuat = table.Column<int>(nullable: true),
                     LaiSuatNgay = table.Column<double>(nullable: true),
                     SoDuCuoiKy = table.Column<double>(nullable: true),
+<<<<<<< HEAD:src/Migrations/20191124090308_AddTables.cs
                     NghiepVu = table.Column<string>(maxLength: 50, nullable: true)
+=======
+                    NghiepVu = table.Column<string>(type: "ntext", nullable: true)
+>>>>>>> d8379b457a26bb3903a865a43aa33e2abb374555:src/Migrations/20191123193352_Initial_Migration.cs
                 },
                 constraints: table =>
                 {
