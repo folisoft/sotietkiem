@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoTietKiem.Data;
 
-namespace SoTietKiem.Migrations.Database
+namespace SoTietKiem.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20191124092320_AddTables")]
-    partial class AddTables
+    [Migration("20191124133526_Initial_Migratio")]
+    partial class Initial_Migratio
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -142,8 +142,8 @@ namespace SoTietKiem.Migrations.Database
                         .HasColumnType("datetime");
 
                     b.Property<string>("NoiDung")
-                        .HasColumnType("nvarchar(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
 
                     b.HasKey("Msqd");
 

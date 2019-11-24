@@ -19,8 +19,9 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Mã số</th>
-                <th scope="col">Tên qui định</th>
+                <th scope="col">Mã quy định</th>
+                <th scope="col">Ngày</th>
+                <th scope="col">Nội dung</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -29,12 +30,15 @@
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">{{ item.Msqd }}</span>
+                      <span class="mb-0 text-sm">{{ item.msqd }}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  {{ item.NoiDung }}
+                  {{ item.ngay | date: 'dd/MM/yyyy' }}
+                </td>
+                <td>
+                  {{ item.noiDung }}
                 </td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">

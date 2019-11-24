@@ -9,9 +9,13 @@ export class QuyDinhService {
         private _savingBookApi: SavingBookApi
     ) { }
 
-    public headers: Headers;
-
-    getAll(): Observable<any> {
+    getAll(): Observable <QuyDinhModel[]> {
         return this._savingBookApi.get(`api/quydinh`);
     }
 }
+
+export class QuyDinhModel {
+    msqd: string;
+    ngay: Date;
+    noiDung: string;
+  }

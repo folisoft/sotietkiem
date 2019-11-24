@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SoTietKiem.Migrations.Database
+namespace SoTietKiem.Migrations
 {
-    public partial class AddTables : Migration
+    public partial class Initial_Migratio : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,7 @@ namespace SoTietKiem.Migrations.Database
                 {
                     MSQD = table.Column<string>(maxLength: 3, nullable: false),
                     Ngay = table.Column<DateTime>(type: "datetime", nullable: true),
-                    NoiDung = table.Column<string>(maxLength: 255, nullable: true)
+                    NoiDung = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {

@@ -91,7 +91,7 @@ namespace SoTietKiem.Data
 
                 entity.Property(e => e.Ngay).HasColumnType("datetime");
 
-                entity.Property(e => e.NoiDung).HasMaxLength(255);
+                entity.Property(e => e.NoiDung).HasMaxLength(500);
             });
 
             modelBuilder.Entity<SoTk>(entity =>

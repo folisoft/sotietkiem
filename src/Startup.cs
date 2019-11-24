@@ -46,7 +46,7 @@ namespace SoTietKiem
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            services.AddCors(o => o.AddPolicy("AllowAll", builder =>
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
