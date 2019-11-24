@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuyDinhService, QuyDinhModel } from 'src/app/service/quydinh.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NoidungPopup } from './popup/noidung-popup';
 
 @Component({
   selector: 'quydinh',
@@ -8,7 +10,8 @@ import { QuyDinhService, QuyDinhModel } from 'src/app/service/quydinh.service';
 })
 export class QuydinhComponent implements OnInit {
 
-  constructor(
+  constructor (
+    private _modalService: NgbModal,
     private _quyDinhService: QuyDinhService
   ) { }
   quydinhs: QuyDinhModel[] = [];
@@ -18,5 +21,14 @@ export class QuydinhComponent implements OnInit {
     })
   }
 
+  detail(noidung: any) {
+    const modalRef = this._modalService
+               .open(NoidungPopup, {windowClass: 'bootstrap-popup in', backdropClass: 'sq-payment-modal-backdrop', size: 'lg', centered: true});      
+		modalRef.componentInstance.noidung = noidung;
+		modalRef.result.then((result) => {
+			if(result == true) {
+			}
+		}, (reason) => {});
+  }
 }
 

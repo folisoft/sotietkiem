@@ -21,7 +21,6 @@
               <tr>
                 <th scope="col">Mã quy định</th>
                 <th scope="col">Ngày</th>
-                <th scope="col">Nội dung</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -38,19 +37,7 @@
                   {{ item.ngay | date: 'dd/MM/yyyy' }}
                 </td>
                 <td>
-                  {{ item.noiDung }}
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                  </div>
+                  <button type="button" class="btn btn-primary" (click)="detail(item.noiDung)">Detail</button>
                 </td>
               </tr>
             </tbody>

@@ -13,6 +13,7 @@ import { DanhSachSoTKComponent } from 'src/app/pages/danhsach-sotk/danhsach-sotk
 import { MoSoTKComponent } from 'src/app/pages/mo-sotk/mo-sotk.component';
 import { PhieuGuiRutModal } from 'src/app/pages/danhsach-sotk/danhsach-sotk-modal/phieu-gui-rut-modal.component';
 import { ThongKeComponent } from 'src/app/pages/thongke/thongke.component';
+import { NoidungPopup } from 'src/app/pages/quydinh/popup/noidung-popup';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -35,12 +36,14 @@ import { ThongKeComponent } from 'src/app/pages/thongke/thongke.component';
     // MoSoTkModal,
     // PhieuRutModal,
     PhieuGuiRutModal,
+    NoidungPopup
   ],
   exports: [],
   entryComponents: [
     // MoSoTkModal,
     // PhieuRutModal,
     PhieuGuiRutModal,
+    NoidungPopup
   ]
 })
 
