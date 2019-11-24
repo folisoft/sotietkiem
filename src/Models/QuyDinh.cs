@@ -5,7 +5,7 @@ namespace SoTietKiem.Models
 {
     public partial class QuyDinh
     {
-        public int Msqd { get; set; }
+        public string Msqd { get; set; }
         public DateTime? Ngay { get; set; }
         public string NoiDung { get; set; }
     }

@@ -6,7 +6,7 @@ namespace SoTietKiem.Models
     public partial class ChiTietSoTietKiem
     {
         public int PhieuGuiRutTienId { get; set; }
-        public int? Mskh { get; set; }
+        public string Mskh { get; set; }
         public DateTime? NgayGui { get; set; }
         public double? SoTienGui { get; set; }
         public DateTime? NgayRut { get; set; }
