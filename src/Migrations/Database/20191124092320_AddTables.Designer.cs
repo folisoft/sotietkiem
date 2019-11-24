@@ -7,16 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SoTietKiem.Data;
 
-namespace SoTietKiem.Migrations
+namespace SoTietKiem.Migrations.Database
 {
     [DbContext(typeof(DatabaseContext))]
-<<<<<<< HEAD:src/Migrations/20191124090308_AddTables.Designer.cs
-    [Migration("20191124090308_AddTables")]
+    [Migration("20191124092320_AddTables")]
     partial class AddTables
-=======
-    [Migration("20191123193352_Initial_Migration")]
-    partial class Initial_Migration
->>>>>>> d8379b457a26bb3903a865a43aa33e2abb374555:src/Migrations/20191123193352_Initial_Migration.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,12 +50,8 @@ namespace SoTietKiem.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("NghiepVu")
-<<<<<<< HEAD:src/Migrations/20191124090308_AddTables.Designer.cs
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-=======
-                        .HasColumnType("ntext");
->>>>>>> d8379b457a26bb3903a865a43aa33e2abb374555:src/Migrations/20191123193352_Initial_Migration.Designer.cs
 
                     b.Property<double?>("SoDuCuoiKy")
                         .HasColumnType("float");
@@ -119,12 +110,8 @@ namespace SoTietKiem.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("KhachHang")
-<<<<<<< HEAD:src/Migrations/20191124090308_AddTables.Designer.cs
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
-=======
-                        .HasColumnType("ntext");
->>>>>>> d8379b457a26bb3903a865a43aa33e2abb374555:src/Migrations/20191123193352_Initial_Migration.Designer.cs
 
                     b.Property<string>("Mskh")
                         .HasColumnName("MSKH")
@@ -155,12 +142,8 @@ namespace SoTietKiem.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("NoiDung")
-<<<<<<< HEAD:src/Migrations/20191124090308_AddTables.Designer.cs
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
-=======
-                        .HasColumnType("ntext");
->>>>>>> d8379b457a26bb3903a865a43aa33e2abb374555:src/Migrations/20191123193352_Initial_Migration.Designer.cs
 
                     b.HasKey("Msqd");
 
@@ -180,12 +163,8 @@ namespace SoTietKiem.Migrations
                         .HasMaxLength(13);
 
                     b.Property<string>("DiaChi")
-<<<<<<< HEAD:src/Migrations/20191124090308_AddTables.Designer.cs
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
-=======
-                        .HasColumnType("ntext");
->>>>>>> d8379b457a26bb3903a865a43aa33e2abb374555:src/Migrations/20191123193352_Initial_Migration.Designer.cs
 
                     b.Property<string>("KhachHang")
                         .HasColumnType("nvarchar(255)")
