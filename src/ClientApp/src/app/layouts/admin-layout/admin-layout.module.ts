@@ -10,6 +10,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { QuydinhComponent } from 'src/app/pages/quydinh/quydinh.component';
+import { DanhSachSoTKComponent } from 'src/app/pages/danhsach-sotk/danhsach-sotk.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { QuydinhComponent } from 'src/app/pages/quydinh/quydinh.component';
     UserProfileComponent,
     QuydinhComponent,
     TablesComponent,
+    DanhSachSoTKComponent,
   ]
 })
 
