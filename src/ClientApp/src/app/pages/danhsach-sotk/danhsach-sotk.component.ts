@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MoSoTkModal } from './danhsach-sotk-modal/mo-sotk-modal.component';
+import { Router } from '@angular/router';
+import { PhieuGuiRutModal } from './danhsach-sotk-modal/phieu-gui-rut-modal.component';
 
 @Component({
     selector: 'ds-sotk',
@@ -7,11 +11,38 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class DanhSachSoTKComponent implements OnInit {
-    constructor() { }
+    constructor(
+        private modalService: NgbModal,
+        private router: Router,
+    ) { }
     TableName = 'Danh sách Sổ tiết kiệm';
     columnName = [];
     ngOnInit() { 
         this.columnName = COLUMNNAME;
+    }
+
+    moSoTK() {
+        this.router.navigate(['/mo-sotk']);
+        // const modalRef = this.modalService.open(MoSoTkModal,{ centered: true, size: 'lg' });
+        // modalRef.result.then(rs => {
+        //     console.log(rs);
+        // });
+    }
+
+    lapPhieuGuiTien() {
+        var modalRef = this.modalService.open(PhieuGuiRutModal,{ centered: true, size: 'lg' });
+        modalRef.componentInstance.action = 'Gửi';
+        modalRef.result.then(rs => {
+            console.log(rs);
+        });
+    }
+
+    lapPhieuRutTien() {
+        var modalRef = this.modalService.open(PhieuGuiRutModal,{ centered: true, size: 'lg' });
+        modalRef.componentInstance.action = 'Rút';
+        modalRef.result.then(rs => {
+            console.log(rs);
+        });
     }
 }
 
