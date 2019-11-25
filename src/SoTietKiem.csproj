@@ -39,6 +39,7 @@
     <Folder Include="Data\Migrations\" />
     <Folder Include="ClientApp\src\app\pages\danhsach-sotk\" />
     <Folder Include="ClientApp\src\app\pages\loai-sotk\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

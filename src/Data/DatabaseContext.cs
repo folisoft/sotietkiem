@@ -58,8 +58,8 @@ namespace SoTietKiem.Data
             });
             modelBuilder.Entity<LoaiTietKiem>(entity =>
             {
-                entity.Property(e => e.LoaiTietKiem1)
-                    .HasColumnName("LoaiTietKiem")
+                entity.Property(e => e.TenLoaiTietKiem)
+                    .HasColumnName("TenLoaiTietKiem")
                     .HasMaxLength(255);
 
                 entity.Property(e => e.NgayHieuLuc).HasColumnType("datetime");

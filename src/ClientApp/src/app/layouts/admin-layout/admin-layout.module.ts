@@ -16,6 +16,7 @@ import { ThongKeComponent } from 'src/app/pages/thongke/thongke.component';
 import { NoidungPopup } from 'src/app/pages/quydinh/popup/noidung-popup';
 import { SoTietKiemService } from 'src/app/service/soktietkiem.service';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { LoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/loaitietkiem.component';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -31,6 +32,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
   declarations: [
     UserProfileComponent,
     QuydinhComponent,
+    LoaiTietKiemComponent,
     TablesComponent,
     DanhSachSoTKComponent,
     MoSoTKComponent,
