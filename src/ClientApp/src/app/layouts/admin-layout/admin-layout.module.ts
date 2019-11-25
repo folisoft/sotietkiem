@@ -14,6 +14,8 @@ import { MoSoTKComponent } from 'src/app/pages/mo-sotk/mo-sotk.component';
 import { PhieuGuiRutModal } from 'src/app/pages/danhsach-sotk/danhsach-sotk-modal/phieu-gui-rut-modal.component';
 import { ThongKeComponent } from 'src/app/pages/thongke/thongke.component';
 import { NoidungPopup } from 'src/app/pages/quydinh/popup/noidung-popup';
+import { SoTietKiemService } from 'src/app/service/soktietkiem.service';
+import { ComponentsModule } from 'src/app/components/components.module';
 import { LoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/loaitietkiem.component';
 import { ThemLoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/popup/themloaitietkiem.component';
 import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.component';
@@ -27,6 +29,7 @@ import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.com
     FormsModule,
     HttpClientModule,
     NgbModule,
+    ComponentsModule,
   ],
   declarations: [
     UserProfileComponent,
@@ -52,7 +55,8 @@ import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.com
     NoidungPopup,
     ThemLoaiTietKiemComponent,
     ThongbaoComponent
-  ]
+  ],
+  providers: [SoTietKiemService]
 })
 
 export class AdminLayoutModule {}

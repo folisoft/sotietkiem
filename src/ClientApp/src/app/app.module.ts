@@ -19,10 +19,6 @@ import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
      AppComponent,
-     //NavMenuComponent,
-     //HomeComponent,
-     //CounterComponent,
-     //FetchDataComponent
      AdminLayoutComponent,
      AuthLayoutComponent,
   ],
