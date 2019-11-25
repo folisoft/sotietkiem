@@ -40,7 +40,7 @@ namespace SoTietKiem.Services
             var responses = new List<LoaiTietKiemResponse>();
             foreach(var item in loaitietkiems)
             {
-                var res = new LoaiTietKiemResponse { Value = item.Id, Name = item.LoaiTietKiem1 };
+                var res = new LoaiTietKiemResponse { Value = item.Id, Name = item.TenLoaiTietKiem };
                 responses.Add(res);
             }
             return responses;
