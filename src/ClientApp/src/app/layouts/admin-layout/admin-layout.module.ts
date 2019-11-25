@@ -14,6 +14,8 @@ import { MoSoTKComponent } from 'src/app/pages/mo-sotk/mo-sotk.component';
 import { PhieuGuiRutModal } from 'src/app/pages/danhsach-sotk/danhsach-sotk-modal/phieu-gui-rut-modal.component';
 import { ThongKeComponent } from 'src/app/pages/thongke/thongke.component';
 import { NoidungPopup } from 'src/app/pages/quydinh/popup/noidung-popup';
+import { SoTietKiemService } from 'src/app/service/soktietkiem.service';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -24,6 +26,7 @@ import { NoidungPopup } from 'src/app/pages/quydinh/popup/noidung-popup';
     FormsModule,
     HttpClientModule,
     NgbModule,
+    ComponentsModule,
   ],
   declarations: [
     UserProfileComponent,
@@ -44,7 +47,8 @@ import { NoidungPopup } from 'src/app/pages/quydinh/popup/noidung-popup';
     // PhieuRutModal,
     PhieuGuiRutModal,
     NoidungPopup
-  ]
+  ],
+  providers: [SoTietKiemService]
 })
 
 export class AdminLayoutModule {}

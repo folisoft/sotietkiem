@@ -18,10 +18,6 @@ import { ServiceModule } from './service/service.module';
 @NgModule({
   declarations: [
      AppComponent,
-     //NavMenuComponent,
-     //HomeComponent,
-     //CounterComponent,
-     //FetchDataComponent
      AdminLayoutComponent,
      AuthLayoutComponent,
   ],
