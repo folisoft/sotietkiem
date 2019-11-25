@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SoTietKiem.Migrations
 {
-    public partial class Initial_Migratio : Migration
+    public partial class Initial_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,9 @@ namespace SoTietKiem.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LoaiTietKiem = table.Column<string>(maxLength: 255, nullable: true),
-                    LaiSuat = table.Column<double>(nullable: true),
-                    NgayHieuLuc = table.Column<DateTime>(type: "datetime", nullable: true),
-                    KyHan = table.Column<int>(nullable: true)
+                    TenLoaiTietKiem = table.Column<string>(maxLength: 255, nullable: true),
+                    LaiSuat = table.Column<double>(nullable: false),
+                    NgayHieuLuc = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {

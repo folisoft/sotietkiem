@@ -14,6 +14,7 @@ import { MoSoTKComponent } from 'src/app/pages/mo-sotk/mo-sotk.component';
 import { PhieuGuiRutModal } from 'src/app/pages/danhsach-sotk/danhsach-sotk-modal/phieu-gui-rut-modal.component';
 import { ThongKeComponent } from 'src/app/pages/thongke/thongke.component';
 import { NoidungPopup } from 'src/app/pages/quydinh/popup/noidung-popup';
+import { LoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/loaitietkiem.component';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -28,6 +29,7 @@ import { NoidungPopup } from 'src/app/pages/quydinh/popup/noidung-popup';
   declarations: [
     UserProfileComponent,
     QuydinhComponent,
+    LoaiTietKiemComponent,
     TablesComponent,
     DanhSachSoTKComponent,
     MoSoTKComponent,

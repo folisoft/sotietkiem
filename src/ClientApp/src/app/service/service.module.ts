@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { QuyDinhService } from "./quydinh.service";
 import { SavingBookApi } from "./savingbook.api";
+import { LoaiTietKiemService } from "./loaitietkiem.service";
 
 @NgModule({
     declarations: [
@@ -14,6 +15,7 @@ import { SavingBookApi } from "./savingbook.api";
     ],
     providers: [
         QuyDinhService,
+        LoaiTietKiemService,
         SavingBookApi
     ],
     entryComponents: [
