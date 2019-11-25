@@ -14,6 +14,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceModule } from './service/service.module';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { ServiceModule } from './service/service.module';
     ServiceModule
   ],
   providers: [
-
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

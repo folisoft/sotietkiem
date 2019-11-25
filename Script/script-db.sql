@@ -14,3 +14,9 @@ Sổ sau khi rút hết tiền sẽ tự động đóng.'),
 (N'QD6', '2019/11/23', N'Người dùng có thể thay đổi các quy định như sau:<br><br>
 <b>QD1</b>: Thay đổi số lượng các loại kỳ hạn, tiền gửi tối thiểu.<br>
 <b>QD3</b>: Thay đổi thời gian gởi tối thiểu và lãi suất các loại kỳ hạn.');
+
+delete from loaitietkiem;
+Insert into LoaiTietKiem(TenLoaiTietKiem, LaiSuat, NgayHieuLuc) Values
+(N'Không kỳ hạn', '0.15', '2019/11/01'),
+(N'3 tháng', '0.5', '2019/11/01'),
+(N'6 tháng', '0.55', '2019/11/01');
