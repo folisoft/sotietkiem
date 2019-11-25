@@ -17,6 +17,8 @@ import { NoidungPopup } from 'src/app/pages/quydinh/popup/noidung-popup';
 import { SoTietKiemService } from 'src/app/service/soktietkiem.service';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { LoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/loaitietkiem.component';
+import { ThemLoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/popup/themloaitietkiem.component';
+import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.component';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -41,14 +43,18 @@ import { LoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/loaitietkiem.c
     // MoSoTkModal,
     // PhieuRutModal,
     PhieuGuiRutModal,
-    NoidungPopup
+    NoidungPopup,
+    ThemLoaiTietKiemComponent,
+    ThongbaoComponent
   ],
   exports: [],
   entryComponents: [
     // MoSoTkModal,
     // PhieuRutModal,
     PhieuGuiRutModal,
-    NoidungPopup
+    NoidungPopup,
+    ThemLoaiTietKiemComponent,
+    ThongbaoComponent
   ],
   providers: [SoTietKiemService]
 })

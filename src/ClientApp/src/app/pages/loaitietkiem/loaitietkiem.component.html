@@ -13,7 +13,12 @@
     <div class="col">
       <div class="card shadow">
         <div class="card-header border-0">
-          <h3 class="mb-0">Danh sách</h3>
+          <div class="col-md-6 float-left">
+              <h3 class="mb-0">Danh sách</h3>
+          </div>
+          <div class="col-md-6 float-right">
+              <button title="Thêm" class="btn btn-success float-right" (click)="create()">Thêm</button>
+          </div>
         </div>
         <div class="table-responsive">
           <table class="table align-items-center table-flush">
@@ -40,10 +45,9 @@
                 <td>
                   {{ item.ngayHieuLuc | date: 'dd/MM/yyyy' }}
                 </td>
-                <td>
-                  <button class="btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                  <button class="btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                  <button class="btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <td style="text-align: right;">
+                  <button title="Sửa" class="btn" (click)="update(item)"><i class="fas fa-pencil-alt"></i></button>
+                  <button title="Xóa" class="btn" (click)="delete(item.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
               </tr>
             </tbody>

@@ -1,0 +1,60 @@
+
+<div class="container-fluid" style="padding: 10px;">
+  <div class="row">
+    <div class="col-xl-10 order-xl-1 m-auto">
+      
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Loại tiết kiệm</h3>
+            </div>
+          </div>
+        </div>
+        <div style="margin-bottom: 50px;">
+          <form>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label">Tên loại tiết kiệm</label>
+                    <input type="text" name="tenloaitietkiem" id="tenloaitietkiem" class="form-control form-control-alternative"
+                      placeholder="Tên loại tiết kiệm" [(ngModel)]="loaiTietKiem.tenLoaiTietKiem">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label">Lãi suất</label>
+                    <input type="number" name="laiSuat" id="laisuat" class="form-control form-control-alternative"
+                    [(ngModel)]="loaiTietKiem.laiSuat">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <label class="form-control-label">Ngày hiệu lực</label>
+                    <input type="date" name="ngayhieuluc" id="ngayhieuluc" class="form-control form-control-alternative"
+                      [(ngModel)]="ngayHieuLuc">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pl-lg-4">
+              <div class="row">
+                <!-- <div class="col-md-9"></div> -->
+                <div class="col-md-12" style="text-align: center;">
+                  <div>
+                      <button type="button" class="btn btn-success" (click)="save()">Lưu</button>
+                      <button type="button" class="btn btn-success" (click)="close()">Thoát</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+    
+    </div>
+  </div>
+</div>
