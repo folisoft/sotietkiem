@@ -19,25 +19,31 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Mã quy định</th>
-                <th scope="col">Ngày</th>
+                <th scope="col">Tên loại tiết kiệm</th>
+                <th scope="col">Lãi suất</th>
+                <th scope="col">Ngày hiệu lực</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of quydinhs">
+              <tr *ngFor="let item of loaiTietKiems">
                 <th scope="row">
                   <div class="media align-items-center">
                     <div class="media-body">
-                      <span class="mb-0 text-sm">{{ item.msqd }}</span>
+                      <span class="mb-0 text-sm">{{ item.tenLoaiTietKiem }}</span>
                     </div>
                   </div>
                 </th>
                 <td>
-                  {{ item.ngay | date: 'dd/MM/yyyy' }}
+                  {{ item.laiSuat }} %
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary" (click)="detail(item.noiDung)">Xem chi tiết</button>
+                  {{ item.ngayHieuLuc | date: 'dd/MM/yyyy' }}
+                </td>
+                <td>
+                  <button class="btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                  <button class="btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                  <button class="btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
               </tr>
             </tbody>

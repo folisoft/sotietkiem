@@ -81,19 +81,16 @@ namespace SoTietKiem.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("KyHan")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("LaiSuat")
+                    b.Property<double>("LaiSuat")
                         .HasColumnType("float");
 
-                    b.Property<string>("LoaiTietKiem1")
-                        .HasColumnName("LoaiTietKiem")
+                    b.Property<DateTime>("NgayHieuLuc")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("TenLoaiTietKiem")
+                        .HasColumnName("TenLoaiTietKiem")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
-
-                    b.Property<DateTime?>("NgayHieuLuc")
-                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 
