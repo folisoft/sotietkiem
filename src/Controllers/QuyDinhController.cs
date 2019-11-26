@@ -12,7 +12,7 @@ using SoTietKiem.Models;
 namespace SoTietKiem.Controllers
 {
     [ApiController]
-    [Route("api/quydinh")]
+    [Route("quydinh")]
     public class QuyDinhController : ControllerBase
     {
         [HttpGet("")]

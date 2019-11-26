@@ -11,7 +11,7 @@ using SoTietKiem.Services;
 namespace SoTietKiem.Controllers
 {
     [ApiController]
-    [Route("api/sotietkiem")]
+    [Route("sotietkiem")]
     public class SoTietKiemController : ControllerBase
     {
         [HttpPost]

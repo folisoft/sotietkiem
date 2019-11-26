@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SoTietKiem.Controllers
 {
-    [Route("api/account")]
+    [Route("account")]
     [ApiController]
     public class LoginController : ControllerBase
     {
