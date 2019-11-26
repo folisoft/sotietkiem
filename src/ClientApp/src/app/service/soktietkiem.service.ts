@@ -15,6 +15,11 @@ export class SoTietKiemService {
         let url = this.soTietKiemUrl;
         return this._savingBookApi.post(url, request);
     }
+
+    getDanhMucSoTK(LoaiTietKiemId: number, mskh: string): Observable<SoTietKiemResponse[]> {
+        return this._savingBookApi.get(this.soTietKiemUrl + `?loaitietkiem=${LoaiTietKiemId}&mskh=${mskh}`);
+    }
+
 }
 
 export class SoTietKiemRequest {
@@ -26,4 +31,14 @@ export class SoTietKiemRequest {
     NgayMoSo: string;
     SoTienGui: number;
     NgayDongSo: string;
+}
+
+export class SoTietKiemResponse {
+    mskh: string;
+    loaiTietKiemId: string;
+    khachHang: string;
+    cmnd: string;
+    ngayMoSo: string;
+    ngayDongSo: string;
+    soDu: string;
 }
