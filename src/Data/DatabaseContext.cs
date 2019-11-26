@@ -22,6 +22,7 @@ namespace SoTietKiem.Data
         public virtual DbSet<LoaiTietKiem> LoaiTietKiem { get; set; }
         public virtual DbSet<PhieuGuiRutTien> PhieuGuiRutTien { get; set; }
         public virtual DbSet<QuyDinh> QuyDinh { get; set; }
+        public virtual DbSet<DinhMuc> DinhMuc { get; set; }
         public virtual DbSet<SoTk> SoTk { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -92,6 +93,11 @@ namespace SoTietKiem.Data
                 entity.Property(e => e.Ngay).HasColumnType("datetime");
 
                 entity.Property(e => e.NoiDung).HasMaxLength(500);
+            });
+
+            modelBuilder.Entity<DinhMuc>(entity =>
+            {
+                entity.HasKey(e => e.Id);
             });
 
             modelBuilder.Entity<SoTk>(entity =>

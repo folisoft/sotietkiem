@@ -12,6 +12,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/ds-sotk', title: 'Tra cứu sổ tiết kiệm',  icon: 'ni-collection text-info', class: '' },
     { path: '/mo-sotk', title: 'Mở sổ tiết kiệm',  icon: 'ni-fat-add text-primary', class: '' },
     { path: '/loaitietkiem', title: 'Loại tiết kiệm',  icon:'ni-paper-diploma text-info', class: '' },
+    { path: '/dinhmuc', title: 'Định mức',  icon:'ni-paper-diploma text-info', class: '' },
     { path: '/quydinh', title: 'Quy định',  icon:'ni-key-25 text-info', class: '' },
 ];
 

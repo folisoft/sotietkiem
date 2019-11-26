@@ -22,7 +22,7 @@ namespace SoTietKiem.Controllers
             var optionsBuilder = new DbContextOptions<DatabaseContext>();
             using (var db = new DatabaseContext(optionsBuilder))
             {
-                var loaiTietKiem = db.LoaiTietKiem.ToList();
+                var loaiTietKiem = db.LoaiTietKiem.Where(ltk => !ltk.IsDeleted).ToList();
 
                 return Ok(loaiTietKiem);
             }
@@ -80,7 +80,7 @@ namespace SoTietKiem.Controllers
                 var loaiTietKiem = db.LoaiTietKiem.FirstOrDefault(ltk => ltk.Id == id);
                 if (loaiTietKiem != null)
                 {
-                    db.LoaiTietKiem.Remove(loaiTietKiem);
+                    loaiTietKiem.IsDeleted = true;
                     result = db.SaveChanges() > 0;
                 }
                 

@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { QuyDinhService } from "./quydinh.service";
 import { SavingBookApi } from "./savingbook.api";
 import { LoaiTietKiemService } from "./loaitietkiem.service";
+import { DinhMucService } from "./dinhmuc.service";
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { LoaiTietKiemService } from "./loaitietkiem.service";
     providers: [
         QuyDinhService,
         LoaiTietKiemService,
+        DinhMucService,
         SavingBookApi
     ],
     entryComponents: [

@@ -10,7 +10,7 @@ export class QuyDinhService {
     ) { }
 
     getAll(): Observable <QuyDinhModel[]> {
-        return this._savingBookApi.get(`api/quydinh`);
+        return this._savingBookApi.get(`quydinh`);
     }
 }
 

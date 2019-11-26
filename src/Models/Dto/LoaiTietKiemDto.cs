@@ -9,5 +9,6 @@ namespace SoTietKiem.Models.Dto
         public string TenLoaiTietKiem { get; set; }
         public double LaiSuat { get; set; }
         public DateTime NgayHieuLuc { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

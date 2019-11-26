@@ -2,7 +2,6 @@
 <div class="container-fluid" style="padding: 10px;">
   <div class="row">
     <div class="col-xl-10 order-xl-1 m-auto">
-      
         <div class="card-header bg-white border-0">
           <div class="row align-items-center">
             <div class="col-8">
@@ -19,6 +18,7 @@
                     <label class="form-control-label">Tên loại tiết kiệm</label>
                     <input type="text" name="tenloaitietkiem" id="tenloaitietkiem" class="form-control form-control-alternative"
                       placeholder="Tên loại tiết kiệm" [(ngModel)]="loaiTietKiem.tenLoaiTietKiem">
+                    <label *ngIf="tenLoaiTietKiemInvalid" class="form-control-label" style="color: red;">Tên loại tiết kiệm chưa nhập</label>
                   </div>
                 </div>
               </div>
@@ -28,6 +28,7 @@
                     <label class="form-control-label">Lãi suất</label>
                     <input type="number" name="laiSuat" id="laisuat" class="form-control form-control-alternative"
                     [(ngModel)]="loaiTietKiem.laiSuat">
+                    <label *ngIf="laiSuatInvalid" class="form-control-label" style="color: red;">Lãi suất chưa nhập</label>
                   </div>
                 </div>
               </div>
@@ -37,6 +38,7 @@
                     <label class="form-control-label">Ngày hiệu lực</label>
                     <input type="date" name="ngayhieuluc" id="ngayhieuluc" class="form-control form-control-alternative"
                       [(ngModel)]="ngayHieuLuc">
+                    <label *ngIf="ngayHieuLucInvalid" class="form-control-label" style="color: red;">Ngày hiệu lực chưa nhập</label>
                   </div>
                 </div>
               </div>
