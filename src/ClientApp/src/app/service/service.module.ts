@@ -5,6 +5,7 @@ import { QuyDinhService } from "./quydinh.service";
 import { SavingBookApi } from "./savingbook.api";
 import { LoaiTietKiemService } from "./loaitietkiem.service";
 import { DinhMucService } from "./dinhmuc.service";
+import { BaoCaoService } from "./baocao.service";
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { DinhMucService } from "./dinhmuc.service";
         QuyDinhService,
         LoaiTietKiemService,
         DinhMucService,
+        BaoCaoService,
         SavingBookApi
     ],
     entryComponents: [
