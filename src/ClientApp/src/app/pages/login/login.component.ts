@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  private async login(): Promise<void> {
+  async login(): Promise<void> {
     this.model.ReturnUrl = "";
     const result = await this.authorizeService.signIn(this.model);
   }

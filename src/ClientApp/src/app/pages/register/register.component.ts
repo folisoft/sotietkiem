@@ -19,9 +19,9 @@ export class RegisterComponent implements OnInit {
   }
 
   
-  private async login(): Promise<void> {
+  async signUp(): Promise<void> {
     const result = await this.authorizeService.register(this.model);
-    
+    console.log(result);
   }
 
 }

@@ -85,7 +85,7 @@ namespace SoTietKiem.Controllers
             input.ReturnUrl = input.ReturnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = input.Email, Email = input.Email };
+                var user = new ApplicationUser { UserName = input.Email, Email = input.Email, NormalizedUserName = input.Name };
                 var result = await _userManager.CreateAsync(user, input.Password);
                 if (result.Succeeded)
                 {
@@ -124,6 +124,12 @@ namespace SoTietKiem.Controllers
 
     public class RegisterModel
     {
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
