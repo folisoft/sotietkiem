@@ -18,6 +18,15 @@ const routes: Routes =[
       }
     ]
   }, {
+    path: '',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
+      }
+    ]
+  }, {
     path: '**',
     redirectTo: 'login'
   }
