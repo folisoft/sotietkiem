@@ -31,19 +31,35 @@ namespace SoTietKiem.Services
             soTK.SoDu = request.SoTienGui;
             context.SoTk.Add(soTK);
 
-            return await context.SaveChangesAsync() > 0;
-        }
+            //var phieuGuiTien = new PhieuGuiRutTien
+            //{
+            //    Mskh = request.Mskh,
+            //    KhachHang = request.KhachHang,
+            //    SoTien = request.SoTienGui,
+            //    Ngay = DateTime.Now
+            //};
+            //context.PhieuGuiRutTien.Add(phieuGuiTien);
 
-        public async Task<IEnumerable<LoaiTietKiemResponse>> GetLoaiTietKiems()
-        {
-            var loaitietkiems = await context.LoaiTietKiem.ToListAsync();
-            var responses = new List<LoaiTietKiemResponse>();
-            foreach(var item in loaitietkiems)
-            {
-                var res = new LoaiTietKiemResponse { Value = item.Id, Name = item.TenLoaiTietKiem };
-                responses.Add(res);
-            }
-            return responses;
+            //var loaiTK = context.LoaiTietKiem.Find(request.LoaiTietKiemId);
+            //var chiTietSo = new ChiTietSoTietKiem
+            //{
+            //    PhieuGuiRutTienId = phieuGuiTien.Id,
+            //    Mskh = request.Mskh,
+            //    NgayGui = request.NgayMoSo,
+            //    SoTienGui = request.SoTienGui,
+            //    LoaiTietKiemId = request.LoaiTietKiemId,
+            //    LaiSuat = loaiTK.LaiSuat,
+            //    SoDuDauKy = request.SoTienGui,
+            //    //SoThangLaiSuat = "",
+            //    //LaiSuatThang = "",
+            //    //SoNgayLaiSuat = "",
+            //    //LaiSuatNgay = "",
+            //    //SoDuCuoiKy = "",
+            //    NghiepVu = "MỞ"
+            //};
+            //context.ChiTietSoTietKiem.Add(chiTietSo);
+
+            return await context.SaveChangesAsync() > 0;
         }
     }
 
@@ -57,11 +73,5 @@ namespace SoTietKiem.Services
         public DateTime NgayMoSo { get; set; }
         public float SoTienGui { get; set; }
         public DateTime NgayDongSo { get; set; }
-    }
-
-    public partial class LoaiTietKiemResponse
-    {
-        public int Value { get; set; }
-        public string Name { get; set; }
     }
 }

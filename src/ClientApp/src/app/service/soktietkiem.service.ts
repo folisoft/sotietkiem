@@ -9,16 +9,11 @@ export class SoTietKiemService {
         private _savingBookApi: SavingBookApi
     ) { }
 
-    private soTietKiemUrl = `/sotietkiem`;
+    private soTietKiemUrl = `sotietkiem`;
 
     moSoTietKiem(request: SoTietKiemRequest): Observable<boolean> {
-        let url = this.soTietKiemUrl + `/add`;
+        let url = this.soTietKiemUrl;
         return this._savingBookApi.post(url, request);
-    }
-
-    getLoaiTietkiem(): Observable<any> {
-        let url = this.soTietKiemUrl + `/getloaitietkiem`;
-        return this._savingBookApi.get(url);
     }
 }
 

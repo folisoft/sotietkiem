@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SoTietKiemRequest, SoTietKiemService } from 'src/app/service/soktietkiem.service';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from 'src/app/service/toast.service';
+import { LoaiTietKiemService, LoaiTietKiemModel } from 'src/app/service/loaitietkiem.service';
 
 @Component({
     selector: 'mo-sotk',
@@ -13,6 +14,7 @@ export class MoSoTKComponent implements OnInit {
     constructor(
         private sotietkiemService: SoTietKiemService,
         private toastService: ToastService,
+        private _loaiTietKiemService: LoaiTietKiemService,
     ) { }
     TableName = 'Mở Sổ iết kiệm';
     soTietKiem = new SoTietKiemRequest();
@@ -21,8 +23,8 @@ export class MoSoTKComponent implements OnInit {
     minDate: any;
 
     ngOnInit() {
-        this.sotietkiemService.getLoaiTietkiem().subscribe(rs => {
-            this.loaiTietKiems = rs;
+        this._loaiTietKiemService.getAll().subscribe((res: LoaiTietKiemModel[]) => {
+            this.loaiTietKiems = res.map(item => ({value: item.id, name: item.tenLoaiTietKiem}));
         });
 
         this.soTietKiem.Mskh = 'TK001';
@@ -32,8 +34,8 @@ export class MoSoTKComponent implements OnInit {
         this.soTietKiem.DiaChi = 'ấp Định Mỹ, xã Định Môn, huyện Thới Lai, Tp.CT';
         this.soTietKiem.SoTienGui = 1000000;
 
-        let date = new Date();
-        this.minDate = {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()};
+        const date = new Date();
+        this.minDate = { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
     }
 
     moSoTietKiem() {
@@ -50,7 +52,8 @@ export class MoSoTKComponent implements OnInit {
                     'Thông báo', { classname: 'bg-danger text-light', delay: 2000 });
             }
         },
-        err => {this.toastService.show('Mở sổ thất bại. Vui lòng thử lại sau!', 'Thông báo', { classname: 'bg-danger text-light', delay: 2000 });},
-        () => {});
+            err => { this.toastService.show('Mở sổ thất bại. Vui lòng thử lại sau!',
+                    'Thông báo', { classname: 'bg-danger text-light', delay: 2000 }); },
+            () => { });
     }
 }
