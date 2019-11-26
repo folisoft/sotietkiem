@@ -34,6 +34,7 @@ export class SavingBookApi {
 
     post<T>(apiUrl: string, body: any): Observable<T> | any {
         let url = this.apiEnpoint.concat(apiUrl);
+        console.log(url);
         let options = this._getHttpHeader();
 
         return this._http.post(url, body, options)

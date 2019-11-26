@@ -59,7 +59,7 @@ export class AuthorizeService {
   public async register(model): Promise<any> {
     let user: any = null;
     try {
-      user = await this._api.post('account/signin', model);
+      user = await this._api.post('account/register', model).toPromise();
       return user;
 
     } catch (silentError) {
@@ -73,7 +73,7 @@ export class AuthorizeService {
   public async signIn(model): Promise<any> {
     let user: any = null;
     try {
-      user = await this._api.post('account/signin', model);
+      user = await this._api.post('account/login', model).toPromise();
       localStorage.setItem('currentUser', user);
       return user;
 

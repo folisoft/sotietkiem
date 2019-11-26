@@ -25,6 +25,6 @@ export class LoginComponent implements OnInit {
 
   async login(): Promise<void> {
     this.model.ReturnUrl = "";
-    const result = await this.authorizeService.signIn(this.model);
+    const result = await this.authorizeService.signIn(this.model).toPromise();
   }
 }
