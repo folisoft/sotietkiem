@@ -13,7 +13,7 @@ using SoTietKiem.Models.Dto;
 namespace SoTietKiem.Controllers
 {
     [ApiController]
-    [Route("api/loaitietkiem")]
+    [Route("loaitietkiem")]
     public class LoaiTietKiemController : ControllerBase
     {
         [HttpGet("")]
