@@ -14,6 +14,26 @@ namespace SoTietKiem.Controllers
     [Route("sotietkiem")]
     public class SoTietKiemController : ControllerBase
     {
+        [HttpGet]
+        [Route("")]
+        public async Task<ActionResult<IEnumerable<SoTk>>> Get(int? loaitietkiem, string mskh)
+        {
+            using (var context = new DatabaseContext())
+            {
+                var list = context.SoTk.Include(l => l.LoaiTietKiem) as IQueryable<SoTk>;
+                if(loaitietkiem != null)
+                {
+                    list = list.Where(c => c.LoaiTietKiem.Id == loaitietkiem) as IQueryable<SoTk>;
+                }
+                if(mskh != null && mskh.Length == 5)
+                {
+                    list = list.Where(c => c.Mskh == mskh) as IQueryable<SoTk>;
+                }
+                var result = await list.ToListAsync();
+                return Ok(result);
+            }
+        }
+
         [HttpPost]
         [Route("")]
         public async Task<ActionResult<bool>> MoSoTietKiem(SoTietKiemRequest request)
