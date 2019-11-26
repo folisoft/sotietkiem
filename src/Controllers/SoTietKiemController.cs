@@ -15,7 +15,7 @@ namespace SoTietKiem.Controllers
     public class SoTietKiemController : ControllerBase
     {
         [HttpPost]
-        [Route("add")]
+        [Route("")]
         public async Task<ActionResult<bool>> MoSoTietKiem(SoTietKiemRequest request)
         {
             using(var context = new DatabaseContext())
@@ -23,18 +23,6 @@ namespace SoTietKiem.Controllers
                 var soTKService = new SoTietKiemService(context);
                 var result = await soTKService.MoSoTietKiemAsync(request);
                 return result;
-            }
-        }
-
-        [HttpGet]
-        [Route("getloaitietkiem")]
-        public async Task<ActionResult<IEnumerable<LoaiTietKiemResponse>>> GetLoaiTietKiems()
-        {
-            using (var context = new DatabaseContext())
-            {
-                var soTKService = new SoTietKiemService(context);
-                var result = await soTKService.GetLoaiTietKiems();
-                return this.Ok(result);
             }
         }
     }

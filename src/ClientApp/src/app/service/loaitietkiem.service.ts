@@ -9,20 +9,22 @@ export class LoaiTietKiemService {
         private _savingBookApi: SavingBookApi
     ) { }
 
+    private loaiTietKiemApi = 'loaitietkiem';
+
     getAll(): Observable <LoaiTietKiemModel[]> {
-        return this._savingBookApi.get(`/loaitietkiem`);
+        return this._savingBookApi.get(this.loaiTietKiemApi);
     }
 
     create(model: LoaiTietKiemModel): Observable<any> {
-        return this._savingBookApi.post(`/loaitietkiem`, model);
+        return this._savingBookApi.post(this.loaiTietKiemApi, model);
     }
 
     update(model: LoaiTietKiemModel) {
-        return this._savingBookApi.put(`/loaitietkiem`, model);
+        return this._savingBookApi.put(this.loaiTietKiemApi, model);
     }
 
     delete(id: number) {
-        return this._savingBookApi.post(`/loaitietkiem/delete?id=${id}`, null);
+        return this._savingBookApi.post(`${this.loaiTietKiemApi}/delete?id=${id}`, null);
     }
 }
 
