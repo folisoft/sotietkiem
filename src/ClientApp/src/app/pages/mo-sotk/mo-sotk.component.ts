@@ -45,11 +45,11 @@ export class MoSoTKComponent implements OnInit {
         this.soTietKiem.NgayDongSo = this.currentDate.year.toString() +
             '-' + (this.currentDate.month + 1).toString() + '-' + this.currentDate.day.toString();
         this.sotietkiemService.moSoTietKiem(this.soTietKiem).subscribe(rs => {
-            if (rs) {
-                this.toastService.show('Mở sổ thành công!', 'Thông báo', { classname: 'bg-success text-light', delay: 2000 });
+            if (rs.status) {
+                this.toastService.show(rs.message, 'Thông báo', { classname: 'bg-success text-light', delay: 2000 });
             } else {
-                this.toastService.show('Mở sổ thất bại. Vui lòng thử lại sau!',
-                    'Thông báo', { classname: 'bg-danger text-light', delay: 2000 });
+                this.toastService.show(rs.message,
+                    'Thông báo', { classname: 'bg-danger text-light', delay: 4000 });
             }
         },
             err => { this.toastService.show('Mở sổ thất bại. Vui lòng thử lại sau!',

@@ -18,11 +18,20 @@ namespace SoTietKiem.Controllers
         [Route("")]
         public async Task<ActionResult<bool>> MoSoTietKiem(SoTietKiemRequest request)
         {
-            using(var context = new DatabaseContext())
+            using (var context = new DatabaseContext())
             {
+                var dinhMuc = context.DinhMuc.FirstOrDefault();
+                if (request.SoTienGui < dinhMuc.TienGuiLanDauToiThieu)
+                {
+                    return Ok(new { status = false, message = "Số tiền gửi lần đầu phải lớn hơn " + dinhMuc.TienGuiLanDauToiThieu + " VNĐ." });
+                }
                 var soTKService = new SoTietKiemService(context);
                 var result = await soTKService.MoSoTietKiemAsync(request);
-                return result;
+                if (result)
+                {
+                    return Ok(new { status = result, message = "Mở sổ thành công!" });
+                }
+                else return Ok(new { status = result, message = "Mở sổ thất bại. Vui lòng thử lại sau!" });
             }
         }
     }
