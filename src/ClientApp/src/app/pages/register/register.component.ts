@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthorizeService } from 'src/app/service/authorize.service';
 
 @Component({
   selector: 'app-register',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  public model: any;
 
-  constructor() { }
+  constructor(
+    private authorizeService: AuthorizeService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
+  }
+
+  
+  private async login(): Promise<void> {
+    const result = await this.authorizeService.register(this.model);
+    
   }
 
 }

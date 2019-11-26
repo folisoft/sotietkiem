@@ -13,8 +13,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/mo-sotk', title: 'Mở sổ tiết kiệm',  icon: 'ni-fat-add text-primary', class: '' },
     { path: '/loaitietkiem', title: 'Loại tiết kiệm',  icon:'ni-paper-diploma text-info', class: '' },
     { path: '/quydinh', title: 'Quy định',  icon:'ni-key-25 text-info', class: '' },
-    { path: '/user-profile', title: 'User profile',  icon:'ni-single-02 text-yellow', class: '' },
-    { path: '/register', title: 'Register',  icon:'ni-circle-08 text-pink', class: '' }
 ];
 
 @Component({
