@@ -12,13 +12,13 @@
         <div class="col-lg-6">
           <div class="form-group">
             <label class="form-control-label" for="cmnd">Mã số</label>
-            <input type="text" id="cmnd" class="form-control form-control-alternative" placeholder="123456789">
+            <input type="text" id="mskh" class="form-control form-control-alternative" placeholder="TK001" [(ngModel)]="request.MSKH" name="MSKH" required [disabled]="true">
           </div>
         </div>
       <div class="col-lg-6">
         <div class="form-group">
           <label class="form-control-label" for="khachhang">Khách hàng</label>
-          <input type="text" id="khachhang" class="form-control form-control-alternative" placeholder="Tên khách hàng">
+          <input type="text" id="khachhang" class="form-control form-control-alternative" placeholder="Tên khách hàng" [(ngModel)]="request.KhachHang" name="KhachHang" required [disabled]="true">
         </div>
       </div>
     </div>
@@ -26,13 +26,19 @@
         <div class="col-lg-6">
           <div class="form-group">
             <label class="form-control-label" for="ngaymoso">Ngày {{action.toLowerCase()}}</label>
-            <input type="text" id="ngaymoso" class="form-control form-control-alternative" placeholder="01/01/1900">
+            <input type="text" id="ngaymoso" class="form-control form-control-alternative" [(ngModel)]="ngay" name="ngay" [disabled]="true" required>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="form-group">
             <label class="form-control-label" for="diachi">Số tiền {{action.toLowerCase()}}</label>
-            <input type="text" id="diachi" class="form-control form-control-alternative" placeholder="Địa chỉ">
+            <div class="input-group">
+              <input type="number" id="SoTienGui" class="form-control form-control-alternative"
+              [(ngModel)]="request.SoTien" name="SoTien" required>
+              <div class="input-group-append">
+                <span class="input-group-text">VNĐ</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

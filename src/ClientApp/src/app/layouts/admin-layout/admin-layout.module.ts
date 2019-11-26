@@ -20,6 +20,7 @@ import { LoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/loaitietkiem.c
 import { ThemLoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/popup/themloaitietkiem.component';
 import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.component';
 import { DinhMucComponent } from 'src/app/pages/dinhmuc/dinhmuc.component';
+import { GuiRutTienService } from 'src/app/service/guiruttien.service';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -53,7 +54,7 @@ import { DinhMucComponent } from 'src/app/pages/dinhmuc/dinhmuc.component';
     ThemLoaiTietKiemComponent,
     ThongbaoComponent
   ],
-  providers: [SoTietKiemService]
+  providers: [SoTietKiemService, GuiRutTienService]
 })
 
 export class AdminLayoutModule {}
