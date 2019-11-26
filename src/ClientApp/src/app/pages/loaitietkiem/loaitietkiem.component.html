@@ -26,6 +26,7 @@
               <tr>
                 <th scope="col">Tên loại tiết kiệm</th>
                 <th scope="col">Lãi suất</th>
+                <th scope="col">Kỳ hạn</th>
                 <th scope="col">Ngày hiệu lực</th>
                 <th scope="col"></th>
               </tr>
@@ -40,7 +41,10 @@
                   </div>
                 </th>
                 <td>
-                  {{ item.laiSuat }} %
+                  {{ item.laiSuat }}
+                </td>
+                <td>
+                  {{ item.kyHan }}
                 </td>
                 <td>
                   {{ item.ngayHieuLuc | date: 'dd/MM/yyyy' }}

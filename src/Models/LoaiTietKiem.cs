@@ -16,6 +16,7 @@ namespace SoTietKiem.Models
         public DateTime NgayHieuLuc { get; set; }
         public bool IsDeleted { get; set; }
 
+        public int KyHan { get; set; }
         public virtual ICollection<SoTk> SoTk { get; set; }
     }
 }

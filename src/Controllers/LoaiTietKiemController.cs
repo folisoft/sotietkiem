@@ -39,6 +39,7 @@ namespace SoTietKiem.Controllers
                 {
                     TenLoaiTietKiem = model.TenLoaiTietKiem,
                     LaiSuat = model.LaiSuat,
+                    KyHan = model.KyHan,
                     NgayHieuLuc = model.NgayHieuLuc
                 };
                 db.LoaiTietKiem.Add(loaiTietKiemMoi);
@@ -61,6 +62,7 @@ namespace SoTietKiem.Controllers
                 {
                     loaiTietKiem.TenLoaiTietKiem = model.TenLoaiTietKiem;
                     loaiTietKiem.LaiSuat = model.LaiSuat;
+                    loaiTietKiem.KyHan = model.KyHan;
                     loaiTietKiem.NgayHieuLuc = model.NgayHieuLuc;
 
                     result = db.SaveChanges() > 0;

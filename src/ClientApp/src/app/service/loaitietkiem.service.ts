@@ -32,5 +32,6 @@ export class LoaiTietKiemModel {
     id: number;
     tenLoaiTietKiem: string;
     laiSuat: number;
+    kyHan: number;
     ngayHieuLuc: Date;
   }

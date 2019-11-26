@@ -99,6 +99,9 @@ namespace SoTietKiem.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("KyHan")
+                        .HasColumnType("int");
+
                     b.Property<double>("LaiSuat")
                         .HasColumnType("float");
 

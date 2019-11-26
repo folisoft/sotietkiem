@@ -33,6 +33,16 @@
                 </div>
               </div>
               <div class="row">
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label class="form-control-label">Kỳ hạn</label>
+                      <input type="number" name="kyHan" id="kyHan" class="form-control form-control-alternative"
+                      [(ngModel)]="loaiTietKiem.kyHan">
+                      <label *ngIf="kyHanInvalid" class="form-control-label" style="color: red;">Kỳ hạn chưa nhập</label>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
                 <div class="col-lg-12">
                   <div class="form-group">
                     <label class="form-control-label">Ngày hiệu lực</label>
