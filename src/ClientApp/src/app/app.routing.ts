@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthorizeGuard } from './service/authorize.guard';
-import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes =[
   {
@@ -19,7 +18,7 @@ const routes: Routes =[
       }
     ]
   }, {
-    path: '**',
+    path: '',
     component: AuthLayoutComponent,
     children: [
       {

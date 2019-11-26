@@ -7,8 +7,6 @@ import { DanhSachSoTKComponent } from 'src/app/pages/danhsach-sotk/danhsach-sotk
 import { MoSoTKComponent } from 'src/app/pages/mo-sotk/mo-sotk.component';
 import { ThongKeComponent } from 'src/app/pages/thongke/thongke.component';
 import { LoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/loaitietkiem.component';
-import { LoginComponent } from 'src/app/pages/login/login.component';
-import { RegisterComponent } from 'src/app/pages/register/register.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'thongke', component: ThongKeComponent },
@@ -17,7 +15,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'quydinh', component: QuydinhComponent },
     { path: 'loaitietkiem', component: LoaiTietKiemComponent },
-    { path: 'tables', component: TablesComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'tables', component: TablesComponent }
 ];

@@ -39,9 +39,6 @@ import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.com
     DanhSachSoTKComponent,
     MoSoTKComponent,
     ThongKeComponent,
-
-    // MoSoTkModal,
-    // PhieuRutModal,
     PhieuGuiRutModal,
     NoidungPopup,
     ThemLoaiTietKiemComponent,
@@ -49,8 +46,6 @@ import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.com
   ],
   exports: [],
   entryComponents: [
-    // MoSoTkModal,
-    // PhieuRutModal,
     PhieuGuiRutModal,
     NoidungPopup,
     ThemLoaiTietKiemComponent,
