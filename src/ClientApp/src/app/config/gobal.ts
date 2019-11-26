@@ -4,10 +4,10 @@ let _API: string = '';
 let _WEBURL: string = '';
 
 if (environment.production) {
-    _API = '/api/';
+    _API = '/';
     _WEBURL = '/';
 } else {
-    _API = 'http://localhost:5001/api/';
+    _API = 'http://localhost:5001/';
     _WEBURL = '/';
 }
 export const API = _API;

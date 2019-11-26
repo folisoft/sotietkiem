@@ -9,7 +9,7 @@ export class SoTietKiemService {
         private _savingBookApi: SavingBookApi
     ) { }
 
-    private soTietKiemUrl = `api/sotietkiem`;
+    private soTietKiemUrl = `/sotietkiem`;
 
     moSoTietKiem(request: SoTietKiemRequest): Observable<boolean> {
         let url = this.soTietKiemUrl + `/add`;

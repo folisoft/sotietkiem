@@ -13,7 +13,7 @@ using SoTietKiem.Models.Dto;
 namespace SoTietKiem.Controllers
 {
     [ApiController]
-    [Route("api/dinhmuc")]
+    [Route("dinhmuc")]
     public class DinhMucController : ControllerBase
     {
         [HttpGet("")]
