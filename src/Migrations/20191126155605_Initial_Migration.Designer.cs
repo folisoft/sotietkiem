@@ -10,7 +10,7 @@ using SoTietKiem.Data;
 namespace SoTietKiem.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20191126141545_Initial_Migration")]
+    [Migration("20191126155605_Initial_Migration")]
     partial class Initial_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,6 +100,9 @@ namespace SoTietKiem.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("KyHan")
+                        .HasColumnType("int");
 
                     b.Property<double>("LaiSuat")
                         .HasColumnType("float");

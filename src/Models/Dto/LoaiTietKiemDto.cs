@@ -10,5 +10,6 @@ namespace SoTietKiem.Models.Dto
         public double LaiSuat { get; set; }
         public DateTime NgayHieuLuc { get; set; }
         public bool IsDeleted { get; set; }
+        public int KyHan { get; set; }
     }
 }

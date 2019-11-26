@@ -18,6 +18,7 @@ export class ThemLoaiTietKiemComponent implements OnInit {
     ) { }
     ngayHieuLuc:any;
     tenLoaiTietKiemInvalid = false;
+    kyHanInvalid = false;
     laiSuatInvalid = false;
     ngayHieuLucInvalid = false;
 
@@ -32,15 +33,18 @@ export class ThemLoaiTietKiemComponent implements OnInit {
         } else {
             this.tenLoaiTietKiemInvalid = false;
         }
-
         if (!this.loaiTietKiem.laiSuat || this.loaiTietKiem.laiSuat == 0) {
             this.laiSuatInvalid = true;
             return false;
         } else {
             this.laiSuatInvalid = false;
         }
-        console.log('loaiTietKiem', this.loaiTietKiem);
-        console.log('time',this.loaiTietKiem.ngayHieuLuc <= new Date('2010/01/01'));
+        if (!this.loaiTietKiem.kyHan) {
+            this.kyHanInvalid = true;
+            return false;
+        } else {
+            this.kyHanInvalid = false;
+        }
         if (!this.loaiTietKiem.ngayHieuLuc || this.loaiTietKiem.ngayHieuLuc <= new Date('2010/01/01')) {
             this.ngayHieuLucInvalid = true;
             return false;

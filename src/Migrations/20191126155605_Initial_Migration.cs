@@ -29,7 +29,8 @@ namespace SoTietKiem.Migrations
                     TenLoaiTietKiem = table.Column<string>(maxLength: 255, nullable: true),
                     LaiSuat = table.Column<double>(nullable: false),
                     NgayHieuLuc = table.Column<DateTime>(type: "datetime", nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false)
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    KyHan = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
