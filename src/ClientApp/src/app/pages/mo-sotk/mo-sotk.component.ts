@@ -42,8 +42,6 @@ export class MoSoTKComponent implements OnInit {
         this.soTietKiem.NgayMoSo = this.currentDate.year.toString() +
             '-' + (this.currentDate.month).toString() + '-' + this.currentDate.day.toString();
 
-        this.soTietKiem.NgayDongSo = this.currentDate.year.toString() +
-            '-' + (this.currentDate.month + 1).toString() + '-' + this.currentDate.day.toString();
         this.sotietkiemService.moSoTietKiem(this.soTietKiem).subscribe(rs => {
             if (rs.status) {
                 this.toastService.show(rs.message, 'Thông báo', { classname: 'bg-success text-light', delay: 2000 });

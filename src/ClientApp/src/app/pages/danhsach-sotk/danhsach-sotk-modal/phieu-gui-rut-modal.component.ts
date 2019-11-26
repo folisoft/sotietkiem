@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ThemGuiRutTienRequest, GuiRutTienService } from 'src/app/service/guiruttien.service';
 
 @Component({
@@ -15,21 +15,25 @@ export class PhieuGuiRutModal implements OnInit {
     @Input() action: string;
     @Input() khachhang: string;
     @Input() mskh: string;
+    @Input() coKyHan: boolean;
+    @Input() denKyHan: boolean;
     request = new ThemGuiRutTienRequest();
-    ngay: string;
+    ngay: NgbDate;
+    minDate: any;
 
     ngOnInit() {
         this.request.MSKH = this.mskh;
         this.request.KhachHang = this.khachhang;
         const currentDate = new Date();
-        this.ngay = currentDate.toLocaleDateString();
-        this.request.Ngay = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate();
+
+        this.minDate = { year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate() };
     }
 
     submit() {
+        this.request.Ngay = this.ngay.year + '-' + (this.ngay.month) + '-' + this.ngay.day;
         this.setAction();
         this.guiRutTienService.themGuiRut(this.request).subscribe(rs => {
-            console.log(rs);
+            this.activeModal.close(rs);
         });
     }
 

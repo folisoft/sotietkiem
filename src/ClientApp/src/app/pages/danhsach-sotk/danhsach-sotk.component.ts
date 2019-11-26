@@ -51,8 +51,11 @@ export class DanhSachSoTKComponent implements OnInit {
         modalRef.componentInstance.action = 'Gửi';
         modalRef.componentInstance.mskh = row.mskh;
         modalRef.componentInstance.khachhang = row.khachHang;
+        modalRef.componentInstance.coKyHan = row.loaiTietKiemId != 1;
         modalRef.result.then(rs => {
-
+            if (rs.DenKyHan) {
+                this.getData();
+            }
         })
         .catch(err => {});
     }
@@ -63,7 +66,7 @@ export class DanhSachSoTKComponent implements OnInit {
         modalRef.componentInstance.mskh = row.mskh;
         modalRef.componentInstance.khachhang = row.khachHang;
         modalRef.result.then(rs => {
-            
+            this.getData();
         })
         .catch(err => {});
     }

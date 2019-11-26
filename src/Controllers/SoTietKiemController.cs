@@ -29,7 +29,7 @@ namespace SoTietKiem.Controllers
                 {
                     list = list.Where(c => c.Mskh == mskh) as IQueryable<SoTk>;
                 }
-                var result = await list.ToListAsync();
+                var result = await list.OrderByDescending(ord => ord.NgayMoSo).ToListAsync();
                 return Ok(result);
             }
         }

@@ -20,8 +20,8 @@ namespace SoTietKiem.Controllers
             using (var context = new DatabaseContext())
             {
                 var service = new GuiRutTienService(context);
-                var result = service.ThemGuiRut(request);
-                return true;
+                var result = await service.ThemGuiRut(request);
+                return result;
             }
         }
     }

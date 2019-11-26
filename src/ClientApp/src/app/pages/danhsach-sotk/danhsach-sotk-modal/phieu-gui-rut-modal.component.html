@@ -26,7 +26,14 @@
         <div class="col-lg-6">
           <div class="form-group">
             <label class="form-control-label" for="ngaymoso">Ngày {{action.toLowerCase()}}</label>
-            <input type="text" id="ngaymoso" class="form-control form-control-alternative" [(ngModel)]="ngay" name="ngay" [disabled]="true" required>
+            <!-- <input type="text" id="ngaymoso" class="form-control form-control-alternative" [(ngModel)]="ngay" name="ngay" required> -->
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+              </div>
+              <input class="form-control datepicker" placeholder='Chọn ngày {{action.toLowerCase()}}' [(ngModel)]="ngay" name="ngay"
+              ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" [minDate]="this.minDate"/>
+            </div>
           </div>
         </div>
         <div class="col-lg-6">
@@ -47,5 +54,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(null)">Đóng</button>
-  <button type="button" class="btn btn-outline-primary" (click)="submit()">Mở Sổ</button>
+  <button type="button" class="btn btn-outline-primary" (click)="submit()">{{action}} Tiền</button>
 </div>
