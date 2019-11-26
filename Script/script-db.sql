@@ -16,7 +16,10 @@ Sổ sau khi rút hết tiền sẽ tự động đóng.'),
 <b>QD3</b>: Thay đổi thời gian gởi tối thiểu và lãi suất các loại kỳ hạn.');
 
 delete from loaitietkiem;
-Insert into LoaiTietKiem(TenLoaiTietKiem, LaiSuat, NgayHieuLuc) Values
-(N'Không kỳ hạn', '0.15', '2019/11/01'),
-(N'3 tháng', '0.5', '2019/11/01'),
-(N'6 tháng', '0.55', '2019/11/01');
+Insert into LoaiTietKiem(TenLoaiTietKiem, LaiSuat, NgayHieuLuc, IsDeleted) Values
+(N'Không kỳ hạn', '0.15', '2019/11/01', 0),
+(N'3 tháng', '0.5', '2019/11/01', 0),
+(N'6 tháng', '0.55', '2019/11/01', 0);
+
+delete from DinhMuc;
+Insert into DinhMuc(TienGuiLanDauToiThieu) values (1000000);

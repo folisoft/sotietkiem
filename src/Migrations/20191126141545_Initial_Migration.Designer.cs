@@ -10,7 +10,7 @@ using SoTietKiem.Data;
 namespace SoTietKiem.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20191125145918_Initial_Migration")]
+    [Migration("20191126141545_Initial_Migration")]
     partial class Initial_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,12 +76,30 @@ namespace SoTietKiem.Migrations
                     b.ToTable("ChiTietSoTietKiem");
                 });
 
+            modelBuilder.Entity("SoTietKiem.Models.DinhMuc", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("TienGuiLanDauToiThieu")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DinhMuc");
+                });
+
             modelBuilder.Entity("SoTietKiem.Models.LoaiTietKiem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<double>("LaiSuat")
                         .HasColumnType("float");

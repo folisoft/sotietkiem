@@ -8,6 +8,19 @@ namespace SoTietKiem.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "DinhMuc",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TienGuiLanDauToiThieu = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DinhMuc", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LoaiTietKiem",
                 columns: table => new
                 {
@@ -15,7 +28,8 @@ namespace SoTietKiem.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenLoaiTietKiem = table.Column<string>(maxLength: 255, nullable: true),
                     LaiSuat = table.Column<double>(nullable: false),
-                    NgayHieuLuc = table.Column<DateTime>(type: "datetime", nullable: false)
+                    NgayHieuLuc = table.Column<DateTime>(type: "datetime", nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -128,6 +142,9 @@ namespace SoTietKiem.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ChiTietSoTietKiem");
+
+            migrationBuilder.DropTable(
+                name: "DinhMuc");
 
             migrationBuilder.DropTable(
                 name: "QuyDinh");

@@ -19,6 +19,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { LoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/loaitietkiem.component';
 import { ThemLoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/popup/themloaitietkiem.component';
 import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.component';
+import { DinhMucComponent } from 'src/app/pages/dinhmuc/dinhmuc.component';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -35,6 +36,7 @@ import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.com
     UserProfileComponent,
     QuydinhComponent,
     LoaiTietKiemComponent,
+    DinhMucComponent,
     TablesComponent,
     DanhSachSoTKComponent,
     MoSoTKComponent,
