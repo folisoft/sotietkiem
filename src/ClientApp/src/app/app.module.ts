@@ -5,8 +5,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-// import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
-// import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/app/service/authorize.interceptor';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';

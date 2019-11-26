@@ -74,6 +74,7 @@ export class AuthorizeService {
     let user: any = null;
     try {
       user = await this._api.post('account/signin', model);
+      localStorage.setItem('currentUser', user);
       return user;
 
     } catch (silentError) {
@@ -86,6 +87,8 @@ export class AuthorizeService {
   public async signOut(): Promise<any> {
     try {
       var rs = await this._api.post('account/signout', this._user);
+      localStorage.setItem('currentUser', null)
+      this._user = null;
       return rs;
     } catch (popupSignOutError) {
       console.log(popupSignOutError);

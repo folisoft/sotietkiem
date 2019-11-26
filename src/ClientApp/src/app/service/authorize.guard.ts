@@ -10,20 +10,14 @@ import { tap } from 'rxjs/operators';
 export class AuthorizeGuard implements CanActivate {
   constructor(private authorize: AuthorizeService, private router: Router) {
   }
-  canActivate(
-    _next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      return this.authorize.isAuthenticated()
-        .pipe(tap(isAuthenticated => this.handleAuthorization(isAuthenticated, state)));
-  }
-
-  private handleAuthorization(isAuthenticated: boolean, state: RouterStateSnapshot) {
-    if (!isAuthenticated) {
-      this.router.navigate(['login'], {
-        queryParams: {
-          ['dashboard']: state.url
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        if (this.authorize.isAuthenticated || localStorage.getItem('currentUser')) {
+            // logged in so return true
+            return true;
         }
-      });
+
+        // not logged in so redirect to login page with the return url
+        this.router.navigate(['login'], { queryParams: { returnUrl: state.url }});
+        return false;
     }
-  }
 }

@@ -4,11 +4,13 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AuthorizeGuard } from './service/authorize.guard';
 
 const routes: Routes =[
   {
     path: '',
     component: AdminLayoutComponent,
+    canActivate: [AuthorizeGuard],
     children: [
       {
         path: '',
