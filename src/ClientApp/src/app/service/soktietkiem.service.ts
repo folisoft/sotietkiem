@@ -11,7 +11,7 @@ export class SoTietKiemService {
 
     private soTietKiemUrl = `sotietkiem`;
 
-    moSoTietKiem(request: SoTietKiemRequest): Observable<boolean> {
+    moSoTietKiem(request: SoTietKiemRequest): Observable<any> {
         let url = this.soTietKiemUrl;
         return this._savingBookApi.post(url, request);
     }
