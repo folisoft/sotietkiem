@@ -36,7 +36,7 @@ export class LoginComponent {
       }
       if (result.succeeded) {
         const profile = await this.authorizeService.profile(this.model.Email);
-        localStorage.setItem('currentUser', profile);
+        localStorage.setItem('currentUser', JSON.stringify(profile));
         this.router.navigate(['']);
       }
     } catch (silentError) {

@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getTitle(){
-    this.profile = localStorage.getItem('currentUser');
+    this.profile = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.profile);
     return 'Dashboard';
   }
