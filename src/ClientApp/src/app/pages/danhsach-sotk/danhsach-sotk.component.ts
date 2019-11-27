@@ -53,9 +53,7 @@ export class DanhSachSoTKComponent implements OnInit {
         modalRef.componentInstance.khachhang = row.khachHang;
         modalRef.componentInstance.coKyHan = row.loaiTietKiemId != 1;
         modalRef.result.then(rs => {
-            if (rs.DenKyHan) {
-                this.getData();
-            }
+            this.getData();
         })
         .catch(err => {});
     }
