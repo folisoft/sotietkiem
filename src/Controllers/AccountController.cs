@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -32,6 +33,7 @@ namespace SoTietKiem.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> Users()
         {
@@ -88,6 +90,7 @@ namespace SoTietKiem.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpGet("profile")]
         public async Task<IActionResult> GetProfileAsync()
         {
