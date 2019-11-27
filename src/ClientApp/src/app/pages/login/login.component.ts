@@ -38,7 +38,7 @@ export class LoginComponent {
         const profile = await this.authorizeService.profile(this.model.Email);
         this.authorizeService.user = profile;
         localStorage.setItem('currentUser', JSON.stringify(profile));
-        this.router.navigate(['']);
+        this.router.navigate(['thongke']);
       }
     } catch (silentError) {
       console.log(silentError);
