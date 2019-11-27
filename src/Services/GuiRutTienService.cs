@@ -20,7 +20,7 @@ namespace SoTietKiem.Services
         {
             var soTietKiem = context.SoTk.Find(request.MSKH);
             var loaiTietKiem = context.LoaiTietKiem.Find(soTietKiem.LoaiTietKiemId);
-            var khongKyHan = context.LoaiTietKiem.FirstOrDefault(l => l.TenLoaiTietKiem == "Không kỳ hạn");
+            var khongKyHan = context.LoaiTietKiem.Find(1);
             var chitietSoTruoc = context.ChiTietSoTietKiem.Where(ct => ct.Mskh == request.MSKH).OrderByDescending(ord => ord.NgayGui).ToList()[0];
             if(loaiTietKiem.KyHan > 0)
             {
