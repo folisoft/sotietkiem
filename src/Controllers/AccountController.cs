@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -7,82 +7,66 @@ using SoTietKiem.Data;
 using SoTietKiem.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SoTietKiem.Controllers
 {
-    [Route("account")]
+    [Route("[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class AccountController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly IEmailSender _emailSender;
 
-        public LoginController(SignInManager<ApplicationUser> signInManager,
+        public AccountController(SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<ApplicationUser> userManager,
-            IEmailSender emailSender,
             ApplicationDbContext context)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
             _logger = logger;
         }
 
-        //GET: api/Login
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> Users()
         {
             return await _context.Users.ToListAsync();
         }
 
-        // POST: api/Login
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost("login")]
         public async Task<ActionResult> PostLoginAsync(LoginModel input)
         {
-            input.ReturnUrl = input.ReturnUrl ?? Url.Content("~/");
-
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var user = await _userManager.FindByEmailAsync(input.Email);
+                if (user == null)
+                {
+                    ModelState.AddModelError("Email", "The email isn't exist.");
+                    return this.BadRequest(ModelState);
+                }
+                var checkPassword = await _userManager.CheckPasswordAsync(user, input.Password);
+                if (!checkPassword)
+                {
+                    ModelState.AddModelError("Password", "The password is wrong.");
+                    return this.BadRequest(ModelState);
+                }
+
                 var result = await _signInManager.PasswordSignInAsync(input.Email, input.Password, input.RememberMe, lockoutOnFailure: true);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(input.ReturnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = input.ReturnUrl, RememberMe = input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return this.Ok(ModelState.ValidationState);
-                }
+                return this.Ok(result);
             }
 
-            // If we got this far, something failed, redisplay form
             return this.Ok();
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> PostRegisterAsync(RegisterModel input)
         {
-            input.ReturnUrl = input.ReturnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = input.Email, Email = input.Email, NormalizedUserName = input.Name };
@@ -90,19 +74,27 @@ namespace SoTietKiem.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(input.ReturnUrl);
+                    return Ok(result);
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-                return Ok(ModelState);
+                return Ok(result);
             }
 
             return Ok();
         }
 
+        [HttpPost("logout")]
+        public async Task<IActionResult> PostLogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
 
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetProfileAsync(string email)
+        {
+            var profile = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            return Ok(profile);
+        }
     }
 
 
@@ -126,7 +118,6 @@ namespace SoTietKiem.Controllers
     {
 
         [Required]
-        [EmailAddress]
         [Display(Name = "Name")]
         public string Name { get; set; }
 

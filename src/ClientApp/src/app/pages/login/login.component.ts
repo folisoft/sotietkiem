@@ -8,23 +8,41 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   public message = new BehaviorSubject<string>(null);
 
-  public model: any;
+  model = {
+    Email: '',
+    Password: '',
+    RememberMe: false,
+    ReturnUrl: ''
+  };
+  errors = [];
+  invalids = {};
 
   constructor(
     private authorizeService: AuthorizeService,
     private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
-  async ngOnInit() {
-   
-  }
-
 
   async login(): Promise<void> {
-    this.model.ReturnUrl = '';
-    const result = await this.authorizeService.signIn(this.model);
+    this.errors = [];
+    this.invalids = {};
+    try {
+      const result = await this.authorizeService.signIn(this.model);
+      if (result.errors && result.errors.length) {
+        this.errors = result.errors;
+      }
+      if (result.succeeded) {
+        const profile = await this.authorizeService.profile(this.model.Email);
+        this.authorizeService.user = profile;
+        localStorage.setItem('currentUser', JSON.stringify(profile));
+        this.router.navigate(['thongke']);
+      }
+    } catch (silentError) {
+      console.log(silentError);
+      this.invalids = silentError.error.errors || silentError.error;
+    }
   }
 }

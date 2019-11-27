@@ -21867,3 +21867,9 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 
     height: 3px;
 }
+
+
+.input-group .form-control:not(:first-child) {
+    padding-left: 15px !important;
+    border-left: 0;
+}

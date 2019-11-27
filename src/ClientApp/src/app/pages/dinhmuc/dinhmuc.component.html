@@ -40,9 +40,6 @@
                           <div class="row">
                             <!-- <div class="col-md-9"></div> -->
                             <div class="col-md-12 mt-5" style="text-align: center;">
-                              <div *ngIf="isSaved">
-                                  <label class="form-control-label" style="color: green;">Lưu thành công</label>
-                              </div>
                               <div>
                                   <button type="button" class="btn btn-success" (click)="save()">Lưu</button>
                               </div>
@@ -59,3 +56,5 @@
     </div>
   </div>
 </div>
+
+<toast aria-live="polite" aria-atomic="true"></toast>

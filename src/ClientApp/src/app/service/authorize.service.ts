@@ -38,57 +38,38 @@ export interface IUser {
 })
 export class AuthorizeService {
 
-  private _user: Observable<IUser>;
+  user;
 
   constructor(private _api: SavingBookApi) {}
 
-  public isAuthenticated(): Observable<boolean> {
-    return this.getUser().pipe(map(u => !!u));
+  public isAuthenticated(): boolean {
+    return this.user != null;
   }
 
   public getUser(): Observable<IUser | null> {
-    return this._user;
-  }
-
-  public getAccessToken(): Observable<string> {
-    return from(this._user)
-      .pipe(mergeMap(() => from(this._user)),
-        map(user => user && user.access_token));
+    return this.user;
   }
   
   public async register(model): Promise<any> {
-    let user: any = null;
-    try {
-      user = await this._api.post('account/register', model).toPromise();
-      return user;
-
-    } catch (silentError) {
-      // User might not be authenticated, fallback to popup authentication
-      console.log(silentError);
-
-    }
+      return await this._api.post('account/register', model).toPromise();
   }
 
 
   public async signIn(model): Promise<any> {
-    let user: any = null;
-    try {
-      user = await this._api.post('account/login', model).toPromise();
-      localStorage.setItem('currentUser', user);
-      return user;
+    const rs = await this._api.post('account/login', model).toPromise();
+    return rs;
+  }
 
-    } catch (silentError) {
-      // User might not be authenticated, fallback to popup authentication
-      console.log(silentError);
-
-    }
+  public async profile(email): Promise<any> {
+    const rs = await this._api.get(`account/profile?email=${email}`).toPromise();
+    return rs;
   }
 
   public async signOut(): Promise<any> {
     try {
-      var rs = await this._api.post('account/signout', this._user);
-      localStorage.setItem('currentUser', null)
-      this._user = null;
+      const rs = await this._api.post('account/logout', null).toPromise();
+      localStorage.setItem('currentUser', null);
+      this.user = null;
       return rs;
     } catch (popupSignOutError) {
       console.log(popupSignOutError);

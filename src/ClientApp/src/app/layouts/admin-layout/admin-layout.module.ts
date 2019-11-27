@@ -21,6 +21,8 @@ import { ThemLoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/popup/them
 import { ThongbaoComponent } from 'src/app/pages/loaitietkiem/popup/thongbao.component';
 import { DinhMucComponent } from 'src/app/pages/dinhmuc/dinhmuc.component';
 import { GuiRutTienService } from 'src/app/service/guiruttien.service';
+import { BaoCaoDoanhSoComponent } from 'src/app/pages/baocaodoanhso/baocaodoanhso.component';
+import { BaoCaoMoDongComponent } from 'src/app/pages/baocaomodong/baocaomodong.component';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -36,6 +38,8 @@ import { GuiRutTienService } from 'src/app/service/guiruttien.service';
   declarations: [
     UserProfileComponent,
     QuydinhComponent,
+    BaoCaoDoanhSoComponent,
+    BaoCaoMoDongComponent,
     LoaiTietKiemComponent,
     DinhMucComponent,
     TablesComponent,
