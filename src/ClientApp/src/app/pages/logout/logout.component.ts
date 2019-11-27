@@ -18,7 +18,7 @@ export class LogoutComponent {
     private router: Router) { }
 
 
-  private async logout(): Promise<void> {
+  private async logout() {
     if (this.authorizeService.isAuthenticated) {
       const result = await this.authorizeService.signOut();
     } else {
