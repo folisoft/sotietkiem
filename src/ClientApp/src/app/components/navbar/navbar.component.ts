@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthorizeService } from 'src/app/service/authorize.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,25 +13,28 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
+
+  profile;
+
+  constructor(location: Location,  private element: ElementRef, private router: Router,
+    private authorizeService: AuthorizeService) {
     this.location = location;
   }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+    this.getTitle();
   }
-  getTitle(){
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    if(titlee.charAt(0) === '#'){
-        titlee = titlee.slice( 1 );
-    }
 
-    for(var item = 0; item < this.listTitles.length; item++){
-        if(this.listTitles[item].path === titlee){
-            return this.listTitles[item].title;
-        }
-    }
+  getTitle(){
+    this.profile = localStorage.getItem('currentUser');
+    console.log(this.profile);
     return 'Dashboard';
+  }
+
+  async logout() {
+    const result = await this.authorizeService.signOut();
+    this.router.navigate(['login']);
   }
 
 }

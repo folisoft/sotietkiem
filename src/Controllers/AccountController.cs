@@ -6,6 +6,8 @@ using SoTietKiem.Data;
 using SoTietKiem.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SoTietKiem.Controllers
@@ -77,6 +79,25 @@ namespace SoTietKiem.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> PostLogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
+
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetProfileAsync()
+        {
+            var profile = new
+            {
+                Name = User.Identity.Name,
+                EmailAddress = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value,
+                ProfileImage = User.Claims.FirstOrDefault(c => c.Type == "picture")?.Value
+            };
+            return Ok(profile);
         }
     }
 

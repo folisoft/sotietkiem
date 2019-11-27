@@ -66,9 +66,14 @@ export class AuthorizeService {
     return rs;
   }
 
+  public async profile(): Promise<any> {
+    const rs = await this._api.get('account/profile').toPromise();
+    return rs;
+  }
+
   public async signOut(): Promise<any> {
     try {
-      const rs = await this._api.post('account/signout', this._user);
+      const rs = await this._api.post('account/logout', null).toPromise();
       localStorage.setItem('currentUser', null);
       this._user = null;
       return rs;

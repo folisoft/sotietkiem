@@ -35,8 +35,9 @@ export class LoginComponent {
         this.errors = result.errors;
       }
       if (result.succeeded) {
-        localStorage.setItem('currentUser', result);
-        this.router.navigate(['dashboard']);
+        const profile = await this.authorizeService.profile();
+        localStorage.setItem('currentUser', profile);
+        this.router.navigate(['']);
       }
     } catch (silentError) {
       console.log(silentError);
