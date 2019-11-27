@@ -21,24 +21,26 @@ export class BaoCaoMoDongComponent implements OnInit {
   baocaos: BaoCaoMoDongModel[] = [];
   ngay = new Date();
   ngaychon = this.dp.transform(new Date(), 'yyyy-MM-dd');
-  loaiTietKiem: number;
+  thang:any;
+  loaiTietKiemId: number = 0;
   tenLoaiTietKiem: string;
   loaiTietKiems = [];
 
   ngOnInit() {
+    this.thang = this.dp.transform(new Date(this.ngaychon), 'MM');
     this._loaiTietKiemService.getAll().subscribe((res: LoaiTietKiemModel[]) => {
       if (res) {
         this.loaiTietKiems = res.map(item => ({value: item.id, name: item.tenLoaiTietKiem}));
         this.tenLoaiTietKiem = res[0].tenLoaiTietKiem;
-        console.log('id',res[0].id);
-        this.getBaoCao(Number(res[0].id), this.ngaychon);
+        this.loaiTietKiemId = Number(res[0].id);
+        this.getBaoCao(this.loaiTietKiemId, this.ngaychon);
       }
     });
   }
 
   getBaoCao(loaiTietKiem: number, ngayChon: string) {
-    this._baoCaoService.getBaoCaoMoDong(loaiTietKiem, ngayChon).subscribe(res => {
-      if (res) {
+    this._baoCaoService.getBaoCaoMoDong(loaiTietKiem, ngayChon).subscribe((res: BaoCaoMoDongModel[]) => {
+      if (res && res.length > 0) {
         this.baocaos = res;
       } else {
         this.baocaos = [];
@@ -47,13 +49,18 @@ export class BaoCaoMoDongComponent implements OnInit {
   }
 
   onChangeDate(event: any) {
-    console.log('event',event);
+    if (event.length <= 0) {
+      this.ngaychon = this.dp.transform(new Date(), 'yyyy-MM-dd');
+    }
+    this.thang = this.dp.transform(new Date(this.ngaychon), 'MM');
+    this.getBaoCao(this.loaiTietKiemId, this.ngaychon);
   }
 
   onChange(event: any) {
     this.tenLoaiTietKiem = event;
     let loai = this.loaiTietKiems.filter(item => item.name == event);
-    this.getBaoCao(Number(loai[0].value), this.ngaychon);
+    this.loaiTietKiemId = Number(loai[0].value);
+    this.getBaoCao(this.loaiTietKiemId, this.ngaychon);
   }
 }
 

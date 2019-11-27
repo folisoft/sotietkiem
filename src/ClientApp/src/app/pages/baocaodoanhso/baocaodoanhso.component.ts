@@ -23,8 +23,8 @@ export class BaoCaoDoanhSoComponent implements OnInit {
   }
 
   getBaoCao(ngayChon: string) {
-    this._baoCaoService.getBaoCaoDoanhSo(ngayChon).subscribe(res => {
-      if (res) {
+    this._baoCaoService.getBaoCaoDoanhSo(ngayChon).subscribe((res:BaoCaoModel[]) => {
+      if (res && res.length > 0) {
         this.baocaos = res;
       }
       else {
@@ -34,7 +34,6 @@ export class BaoCaoDoanhSoComponent implements OnInit {
   }
 
   onChangeDate() {
-    console.log('this.ngaychon',this.ngaychon);
     this.getBaoCao(this.ngaychon);
   }
 }

@@ -50,7 +50,7 @@ namespace SoTietKiem.Controllers
                                  group s by new { s.LoaiTietKiemId, s.TenLoaiTietKiem } into g
                                  select new { TongChi = g.Sum(t => t.SoTien), g.Key.LoaiTietKiemId, g.Key.TenLoaiTietKiem };
                 
-                var doanhSo = new DoanhSoDto();
+                var doanhSo = new List<DoanhSoDto>();
                 var isExistDoanhSoThu = doanhSoThu.Any();
                 var isExistDoanhSoChi = doanhSoChi.Any();
                 if (isExistDoanhSoThu && isExistDoanhSoChi) 
@@ -133,7 +133,7 @@ namespace SoTietKiem.Controllers
                                  group s by new { s.Ngay } into g
                                  select new { TongDong = g.Sum(t => t.SoTien), g.Key.Ngay };
 
-                var doanhSo = new DoanhSoMoDongDto();
+                var doanhSo = new List<DoanhSoMoDongDto>();
                 var isExistDoanhSoThu = doanhSoMo.Any();
                 var isExistDoanhSoChi = doanhSoDong.Any();
                 if (isExistDoanhSoThu && isExistDoanhSoChi)
