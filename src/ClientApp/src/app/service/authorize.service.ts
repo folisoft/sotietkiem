@@ -38,22 +38,16 @@ export interface IUser {
 })
 export class AuthorizeService {
 
-  private _user: Observable<IUser>;
+  user;
 
   constructor(private _api: SavingBookApi) {}
 
-  public isAuthenticated(): Observable<boolean> {
-    return this.getUser().pipe(map(u => !!u));
+  public isAuthenticated(): boolean {
+    return this.user != null;
   }
 
   public getUser(): Observable<IUser | null> {
-    return this._user;
-  }
-
-  public getAccessToken(): Observable<string> {
-    return from(this._user)
-      .pipe(mergeMap(() => from(this._user)),
-        map(user => user && user.access_token));
+    return this.user;
   }
   
   public async register(model): Promise<any> {
@@ -75,7 +69,7 @@ export class AuthorizeService {
     try {
       const rs = await this._api.post('account/logout', null).toPromise();
       localStorage.setItem('currentUser', null);
-      this._user = null;
+      this.user = null;
       return rs;
     } catch (popupSignOutError) {
       console.log(popupSignOutError);

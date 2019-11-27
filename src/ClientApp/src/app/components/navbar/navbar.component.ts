@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getTitle(){
-    this.profile = JSON.parse(localStorage.getItem('currentUser'));
+    this.profile = this.authorizeService.user;
     console.log(this.profile);
     return 'Dashboard';
   }
