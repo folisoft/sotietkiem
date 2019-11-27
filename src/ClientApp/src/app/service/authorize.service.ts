@@ -67,8 +67,8 @@ export class AuthorizeService {
 
   public async signOut(): Promise<any> {
     try {
-      const rs = await this._api.post('account/logout', null).toPromise();
-      localStorage.setItem('currentUser', null);
+      const rs = await this._api.post('account/logout', null);
+      sessionStorage.removeItem('currentUser');
       this.user = null;
       return rs;
     } catch (popupSignOutError) {

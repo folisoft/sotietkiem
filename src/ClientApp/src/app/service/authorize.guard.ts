@@ -9,7 +9,8 @@ export class AuthorizeGuard implements CanActivate {
   constructor(private authorize: AuthorizeService, private router: Router) {
   }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this.authorize.isAuthenticated || localStorage.getItem('currentUser')) {
+      const auth = sessionStorage.getItem('currentUser');
+        if ( auth != null) {
             // logged in so return true
             return true;
         }

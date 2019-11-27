@@ -27,12 +27,12 @@ export class MoSoTKComponent implements OnInit {
             this.loaiTietKiems = res.map(item => ({value: item.id, name: item.tenLoaiTietKiem}));
         });
 
-        this.soTietKiem.Mskh = 'TK001';
         this.soTietKiem.LoaiTietKiemId = 1;
-        this.soTietKiem.KhachHang = 'Lê Hiếu';
-        this.soTietKiem.Cmnd = '365214789';
-        this.soTietKiem.DiaChi = 'ấp Định Mỹ, xã Định Môn, huyện Thới Lai, Tp.CT';
-        this.soTietKiem.SoTienGui = 1000000;
+        // this.soTietKiem.Mskh = 'TK001';
+        // this.soTietKiem.KhachHang = 'Lê Hiếu';
+        // this.soTietKiem.Cmnd = '365214789';
+        // this.soTietKiem.DiaChi = 'ấp Định Mỹ, xã Định Môn, huyện Thới Lai, Tp.CT';
+        // this.soTietKiem.SoTienGui = 1000000;
 
         const date = new Date();
         this.minDate = { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
@@ -42,6 +42,10 @@ export class MoSoTKComponent implements OnInit {
         this.soTietKiem.NgayMoSo = this.currentDate.year.toString() +
             '-' + (this.currentDate.month).toString() + '-' + this.currentDate.day.toString();
 
+        // this.moSo();
+    }
+
+    moSo() {
         this.sotietkiemService.moSoTietKiem(this.soTietKiem).subscribe(rs => {
             if (rs.status) {
                 this.toastService.show(rs.message, 'Thông báo', { classname: 'bg-success text-light', delay: 2000 });

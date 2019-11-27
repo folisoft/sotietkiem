@@ -9,6 +9,11 @@ import { AuthorizeGuard } from './service/authorize.guard';
 const routes: Routes =[
   {
     path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: AdminLayoutComponent,
     canActivate: [AuthorizeGuard],
     children: [
