@@ -32,7 +32,7 @@ export class RegisterComponent {
       if (result.errors && result.errors.length) {
         this.errors = result.errors;
       }
-      if (result.Succeeded) {
+      if (result.succeeded) {
         this.router.navigate(['login']);
       }
     } catch (silentError) {
