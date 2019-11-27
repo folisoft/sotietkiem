@@ -26,7 +26,7 @@ namespace SoTietKiem.Controllers
                 var doanhSoThu = from p in db.PhieuGuiRutTien
                                  join c in db.ChiTietSoTietKiem on p.Mskh equals c.Mskh
                                  join l in db.LoaiTietKiem on c.LoaiTietKiemId equals l.Id
-                                 where (c.NghiepVu == "MỞ" || c.NghiepVu == "GỬI")
+                                 where (c.NghiepVu == "MO" || c.NghiepVu == "GUI")
                                  && c.NgayGui.Value.Date == ngayChon.Date
                                  select new
                                  {
@@ -39,7 +39,7 @@ namespace SoTietKiem.Controllers
                 var doanhSoChi = from p in db.PhieuGuiRutTien
                                  join c in db.ChiTietSoTietKiem on p.Mskh equals c.Mskh
                                  join l in db.LoaiTietKiem on c.LoaiTietKiemId equals l.Id
-                                 where (c.NghiepVu == "RÚT" || c.NghiepVu == "ĐÓNG")
+                                 where (c.NghiepVu == "RUT" || c.NghiepVu == "DONG")
                                  && c.NgayGui.Value.Date == ngayChon.Date
                                  select new
                                  {
@@ -106,7 +106,7 @@ namespace SoTietKiem.Controllers
             {
                 var doanhSoMo = from p in db.PhieuGuiRutTien
                                  join c in db.ChiTietSoTietKiem on p.Mskh equals c.Mskh
-                                 where c.NghiepVu == "MỞ"
+                                 where c.NghiepVu == "MO"
                                  && c.LoaiTietKiemId == loaiTietKiem
                                  && c.NgayGui.Value.Month == ngayChon.Month
                                  && c.NgayGui.Value.Year == ngayChon.Year
@@ -121,7 +121,7 @@ namespace SoTietKiem.Controllers
                 var doanhSoDong = from p in db.PhieuGuiRutTien
                                  join c in db.ChiTietSoTietKiem on p.Mskh equals c.Mskh
                                  join l in db.LoaiTietKiem on c.LoaiTietKiemId equals l.Id
-                                 where c.NghiepVu == "ĐÓNG"
+                                 where c.NghiepVu == "RUT"
                                  && c.LoaiTietKiemId == loaiTietKiem
                                  && c.NgayGui.Value.Month == ngayChon.Month
                                  && c.NgayGui.Value.Year == ngayChon.Year

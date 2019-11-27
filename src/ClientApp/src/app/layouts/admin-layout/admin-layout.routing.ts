@@ -12,6 +12,7 @@ import { BaoCaoDoanhSoComponent } from 'src/app/pages/baocaodoanhso/baocaodoanhs
 import { BaoCaoMoDongComponent } from 'src/app/pages/baocaomodong/baocaomodong.component';
 
 export const AdminLayoutRoutes: Routes = [
+    { path: '', component: ThongKeComponent },
     { path: 'thongke', component: ThongKeComponent },
     { path: 'ds-sotk', component: DanhSachSoTKComponent },
     { path: 'mo-sotk', component: MoSoTKComponent },

@@ -65,7 +65,7 @@ namespace SoTietKiem.Services
         #region GUI RUT TIEN
         private bool AddChiTietSo(PhieuGuiRutTien phieuGuiTien, ChiTietSoTietKiem chitietSoTruoc, LoaiTietKiem loaitietkiem, LoaiTietKiem khongkyhan, string nghiepvu, SoTk soTietKiem)
         {
-            var addChiTietSo = this.KhoiTaoChiTiet(phieuGuiTien, chitietSoTruoc, loaitietkiem);
+            var addChiTietSo = this.KhoiTaoChiTiet(phieuGuiTien, chitietSoTruoc, loaitietkiem, nghiepvu);
             addChiTietSo.NghiepVu = nghiepvu;
 
             int soNam = phieuGuiTien.Ngay.Value.Year - chitietSoTruoc.NgayGui.Value.Year;
@@ -73,17 +73,25 @@ namespace SoTietKiem.Services
             if (soNam > 0) soThang = phieuGuiTien.Ngay.Value.Month + 12 - chitietSoTruoc.NgayGui.Value.Month;
             else soThang = phieuGuiTien.Ngay.Value.Month - chitietSoTruoc.NgayGui.Value.Month;
             var soNgay = Math.Abs(phieuGuiTien.Ngay.Value.Day - chitietSoTruoc.NgayGui.Value.Month);
-            if (soThang > 0)
+            if (soThang > 0 && nghiepvu == "GUI")
             {
                 addChiTietSo.SoThangLaiSuat = soThang;
                 addChiTietSo.LaiSuatThang = this.LaiThang(chitietSoTruoc.SoDuCuoiKy.Value, addChiTietSo.LaiSuat.Value / 100, (double)soThang);
                 addChiTietSo.SoNgayLaiSuat = 0;
                 addChiTietSo.LaiSuatNgay = 0;
             }
-            if (soNgay > 0)
+            if (soNgay > 0 && nghiepvu == "GUI")
             {
                 addChiTietSo.SoNgayLaiSuat = (int)soNgay;
                 addChiTietSo.LaiSuatNgay = this.LaiNgay(chitietSoTruoc.SoDuCuoiKy.Value, khongkyhan.LaiSuat / 100, (double)soThang, soNgay);
+            }
+
+            if(nghiepvu == "RUT")
+            {
+                addChiTietSo.SoThangLaiSuat = 0;
+                addChiTietSo.LaiSuatThang = 0;
+                addChiTietSo.SoNgayLaiSuat = 0;
+                addChiTietSo.LaiSuatNgay = 0;
             }
             addChiTietSo.SoDuCuoiKy = addChiTietSo.SoDuDauKy + addChiTietSo.LaiSuatThang + addChiTietSo.LaiSuatNgay;
 
@@ -93,6 +101,7 @@ namespace SoTietKiem.Services
             if(nghiepvu == "RUT")
             {
                 soTietKiem.NgayDongSo = DateTime.Now;
+                soTietKiem.SoDu = 0;
             }
             context.SoTk.Update(soTietKiem);
             return context.SaveChanges() > 0;
@@ -148,9 +157,9 @@ namespace SoTietKiem.Services
         }
         #endregion
 
-        private ChiTietSoTietKiem KhoiTaoChiTiet(PhieuGuiRutTien phieuGuiTien, ChiTietSoTietKiem chitietSoTruoc, LoaiTietKiem loaitietkiem)
+        private ChiTietSoTietKiem KhoiTaoChiTiet(PhieuGuiRutTien phieuGuiTien, ChiTietSoTietKiem chitietSoTruoc, LoaiTietKiem loaitietkiem, string nghiepvu)
         {
-            return new ChiTietSoTietKiem
+            var result = new ChiTietSoTietKiem
             {
                 PhieuGuiRutTienId = phieuGuiTien.Id,
                 Mskh = phieuGuiTien.Mskh,
@@ -158,8 +167,11 @@ namespace SoTietKiem.Services
                 SoTienGui = phieuGuiTien.SoTien,
                 LoaiTietKiemId = loaitietkiem.Id,
                 LaiSuat = loaitietkiem.LaiSuat,
-                SoDuDauKy = chitietSoTruoc.SoDuCuoiKy + phieuGuiTien.SoTien
+
             };
+            if (nghiepvu == "RUT") result.SoDuDauKy = chitietSoTruoc.SoDuCuoiKy + 0;
+            if (nghiepvu == "GUI") result.SoDuDauKy = chitietSoTruoc.SoDuCuoiKy + phieuGuiTien.SoTien;
+            return result;
         }
     }
 
