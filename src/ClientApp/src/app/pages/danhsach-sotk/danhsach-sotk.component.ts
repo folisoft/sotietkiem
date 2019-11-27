@@ -46,20 +46,29 @@ export class DanhSachSoTKComponent implements OnInit {
         });
     }
 
-    lapPhieuGuiTien() {
+    lapPhieuGuiTien(row) {
         var modalRef = this.modalService.open(PhieuGuiRutModal,{ centered: true, size: 'lg' });
         modalRef.componentInstance.action = 'Gửi';
+        modalRef.componentInstance.mskh = row.mskh;
+        modalRef.componentInstance.khachhang = row.khachHang;
+        modalRef.componentInstance.coKyHan = row.loaiTietKiemId != 1;
         modalRef.result.then(rs => {
-            console.log(rs);
-        });
+            if (rs.DenKyHan) {
+                this.getData();
+            }
+        })
+        .catch(err => {});
     }
 
-    lapPhieuRutTien() {
-        var modalRef = this.modalService.open(PhieuGuiRutModal,{ centered: true, size: 'lg' });
+    lapPhieuRutTien(row) {
+        var modalRef = this.modalService.open(PhieuGuiRutModal, { centered: true, size: 'lg' });
         modalRef.componentInstance.action = 'Rút';
+        modalRef.componentInstance.mskh = row.mskh;
+        modalRef.componentInstance.khachhang = row.khachHang;
         modalRef.result.then(rs => {
-            console.log(rs);
-        });
+            this.getData();
+        })
+        .catch(err => {});
     }
 
 

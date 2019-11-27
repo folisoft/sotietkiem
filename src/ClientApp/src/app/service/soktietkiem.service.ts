@@ -39,6 +39,5 @@ export class SoTietKiemResponse {
     khachHang: string;
     cmnd: string;
     ngayMoSo: string;
-    ngayDongSo: string;
     soDu: string;
 }

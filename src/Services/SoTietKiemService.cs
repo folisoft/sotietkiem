@@ -50,8 +50,12 @@ namespace SoTietKiem.Services
                 SoTienGui = request.SoTienGui,
                 LoaiTietKiemId = request.LoaiTietKiemId,
                 LaiSuat = loaiTK.LaiSuat,
-                SoDuDauKy = request.SoTienGui,
-                NghiepVu = "MỞ"
+                SoDuDauKy = 0,
+                SoDuCuoiKy = request.SoTienGui,
+                SoThangLaiSuat = 0,
+                SoNgayLaiSuat = 0,
+                LaiSuatNgay = 0,
+                NghiepVu = "MO"
             };
             context.ChiTietSoTietKiem.Add(chiTietSo);
 
@@ -68,6 +72,5 @@ namespace SoTietKiem.Services
         public string DiaChi { get; set; }
         public DateTime NgayMoSo { get; set; }
         public float SoTienGui { get; set; }
-        public DateTime NgayDongSo { get; set; }
     }
 }
