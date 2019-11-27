@@ -57,37 +57,19 @@ export class AuthorizeService {
   }
   
   public async register(model): Promise<any> {
-    let user: any = null;
-    try {
-      user = await this._api.post('account/register', model).toPromise();
-      return user;
-
-    } catch (silentError) {
-      // User might not be authenticated, fallback to popup authentication
-      console.log(silentError);
-
-    }
+      return await this._api.post('account/register', model).toPromise();
   }
 
 
   public async signIn(model): Promise<any> {
-    let user: any = null;
-    try {
-      user = await this._api.post('account/login', model).toPromise();
-      localStorage.setItem('currentUser', user);
-      return user;
-
-    } catch (silentError) {
-      // User might not be authenticated, fallback to popup authentication
-      console.log(silentError);
-
-    }
+    const rs = await this._api.post('account/login', model).toPromise();
+    return rs;
   }
 
   public async signOut(): Promise<any> {
     try {
-      var rs = await this._api.post('account/signout', this._user);
-      localStorage.setItem('currentUser', null)
+      const rs = await this._api.post('account/signout', this._user);
+      localStorage.setItem('currentUser', null);
       this._user = null;
       return rs;
     } catch (popupSignOutError) {

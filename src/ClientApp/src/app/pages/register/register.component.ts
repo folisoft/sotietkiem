@@ -7,21 +7,37 @@ import { AuthorizeService } from 'src/app/service/authorize.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
-  public model: any;
+export class RegisterComponent {
+
+  model = {
+    Name: '',
+    Email: '',
+    Password: '',
+    ConfirmPassword: '',
+    ReturnUrl: ''
+  };
+  errors = [];
+  invalids = {};
 
   constructor(
     private authorizeService: AuthorizeService,
     private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
-  ngOnInit() {
-  }
-
-  
   async signUp(): Promise<void> {
-    const result = await this.authorizeService.register(this.model);
-    console.log(result);
+    this.errors = [];
+    this.invalids = {};
+    try {
+      const result = await this.authorizeService.register(this.model);
+      if (result.errors && result.errors.length) {
+        this.errors = result.errors;
+      }
+      if (result.Succeeded) {
+        this.router.navigate(['login']);
+      }
+    } catch (silentError) {
+      console.log(silentError.error.errors);
+      this.invalids = silentError.error.errors || silentError.error;
+    }
   }
-
 }

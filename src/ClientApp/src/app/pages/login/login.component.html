@@ -20,13 +20,18 @@
     <div class="col-lg-5 col-md-7">
       <div class="card shadow border-0">
         <div class="card-body px-lg-5 py-lg-5">
-          <form role="form">
+          <form role="form" class="needs-validation" novalidate>
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" placeholder="Email" type="email" [(ngModel)]="user.Email">
+                <input name="Email" class="form-control" placeholder="Email" type="email" [(ngModel)]="model.Email"
+                  [ngModelOptions]="{standalone: true}">
+              </div>
+
+              <div class="invalid-feedback" *ngFor="let error of this.invalids['Email']">
+                {{error}}
               </div>
             </div>
             <div class="form-group">
@@ -34,14 +39,24 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" placeholder="Password" type="password" [(ngModel)]="user.Password">
+                <input name="Password" class="form-control" placeholder="Password" type="password"
+                  [(ngModel)]="model.Password" [ngModelOptions]="{standalone: true}">
+              </div>
+
+              <div class="invalid-feedback" *ngFor="let error of this.invalids['Password']">
+                {{error}}
               </div>
             </div>
             <div class="custom-control custom-control-alternative custom-checkbox">
-              <input class="custom-control-input" id=" customCheckLogin" type="checkbox" [(ngModel)]="user.RememberMe">
+              <input name="RememberMe" class="custom-control-input" id=" customCheckLogin" type="checkbox"
+                [(ngModel)]="model.RememberMe" [ngModelOptions]="{standalone: true}">
               <label class="custom-control-label" for=" customCheckLogin">
                 <span class="text-muted">Remember me</span>
               </label>
+            </div>
+
+            <div class="invalid-feedback" *ngFor="let error of this.errors">
+              {{error.description}}
             </div>
             <div class="text-center">
               <button type="button" class="btn btn-primary my-4" (click)="login()">Sign in</button>
@@ -57,3 +72,9 @@
     </div>
   </div>
 </div>
+
+<style>
+  .invalid-feedback {
+    display: block !important;
+  }
+</style>
