@@ -33,7 +33,6 @@ namespace SoTietKiem.Controllers
             _logger = logger;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>> Users()
         {
@@ -90,16 +89,10 @@ namespace SoTietKiem.Controllers
             return Ok();
         }
 
-        [Authorize]
         [HttpGet("profile")]
-        public async Task<IActionResult> GetProfileAsync()
+        public async Task<IActionResult> GetProfileAsync(string email)
         {
-            var profile = new
-            {
-                Name = User.Identity.Name,
-                EmailAddress = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value,
-                ProfileImage = User.Claims.FirstOrDefault(c => c.Type == "picture")?.Value
-            };
+            var profile = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             return Ok(profile);
         }
     }

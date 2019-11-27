@@ -35,7 +35,7 @@ export class LoginComponent {
         this.errors = result.errors;
       }
       if (result.succeeded) {
-        const profile = await this.authorizeService.profile();
+        const profile = await this.authorizeService.profile(this.model.Email);
         localStorage.setItem('currentUser', profile);
         this.router.navigate(['']);
       }

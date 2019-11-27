@@ -66,8 +66,8 @@ export class AuthorizeService {
     return rs;
   }
 
-  public async profile(): Promise<any> {
-    const rs = await this._api.get('account/profile').toPromise();
+  public async profile(email): Promise<any> {
+    const rs = await this._api.get(`account/profile?email=${email}`).toPromise();
     return rs;
   }
 
