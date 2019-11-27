@@ -14,6 +14,8 @@ export const ROUTES: RouteInfo[] = [
     { path: '/loaitietkiem', title: 'Loại tiết kiệm',  icon:'ni-paper-diploma text-info', class: '' },
     { path: '/dinhmuc', title: 'Định mức',  icon:'ni-paper-diploma text-info', class: '' },
     { path: '/quydinh', title: 'Quy định',  icon:'ni-key-25 text-info', class: '' },
+    { path: '/baocaodoanhso', title: 'Báo cáo doanh số',  icon:'ni-key-25 text-info', class: '' },
+    { path: '/baocaomodong', title: 'Báo cáo mở đóng',  icon:'ni-key-25 text-info', class: '' },
 ];
 
 @Component({

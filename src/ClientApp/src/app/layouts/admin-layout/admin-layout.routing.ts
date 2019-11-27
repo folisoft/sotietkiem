@@ -8,6 +8,8 @@ import { MoSoTKComponent } from 'src/app/pages/mo-sotk/mo-sotk.component';
 import { ThongKeComponent } from 'src/app/pages/thongke/thongke.component';
 import { LoaiTietKiemComponent } from 'src/app/pages/loaitietkiem/loaitietkiem.component';
 import { DinhMucComponent } from 'src/app/pages/dinhmuc/dinhmuc.component';
+import { BaoCaoDoanhSoComponent } from 'src/app/pages/baocaodoanhso/baocaodoanhso.component';
+import { BaoCaoMoDongComponent } from 'src/app/pages/baocaomodong/baocaomodong.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'thongke', component: ThongKeComponent },
@@ -17,5 +19,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'quydinh', component: QuydinhComponent },
     { path: 'loaitietkiem', component: LoaiTietKiemComponent },
     { path: 'dinhmuc', component: DinhMucComponent },
+    { path: 'baocaodoanhso', component: BaoCaoDoanhSoComponent },
+    { path: 'baocaomodong', component: BaoCaoMoDongComponent },
     { path: 'tables', component: TablesComponent }
 ];
