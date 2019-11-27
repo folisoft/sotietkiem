@@ -23,14 +23,14 @@ export class SoTietKiemService {
 }
 
 export class SoTietKiemRequest {
-    Mskh: string;
+    Mskh: string = '';
     LoaiTietKiemId: number;
-    KhachHang: string;
-    Cmnd: string;
-    DiaChi: string;
-    NgayMoSo: string;
+    KhachHang: string = '';
+    Cmnd: string = '';
+    DiaChi: string = '';
+    NgayMoSo: string = '';
     SoTienGui: number;
-    NgayDongSo: string;
+    NgayDongSo: string = '';
 }
 
 export class SoTietKiemResponse {

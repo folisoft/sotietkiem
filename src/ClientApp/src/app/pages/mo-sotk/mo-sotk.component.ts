@@ -16,10 +16,10 @@ export class MoSoTKComponent implements OnInit {
         private toastService: ToastService,
         private _loaiTietKiemService: LoaiTietKiemService,
     ) { }
-    TableName = 'Mở Sổ iết kiệm';
+    TableName = 'Mở Sổ Tiết kiệm';
     soTietKiem = new SoTietKiemRequest();
     loaiTietKiems = [];
-    currentDate: NgbDate;
+    currentDate = new NgbDate(null, null, null);
     minDate: any;
 
     ngOnInit() {
@@ -28,21 +28,23 @@ export class MoSoTKComponent implements OnInit {
         });
 
         this.soTietKiem.LoaiTietKiemId = 1;
-        // this.soTietKiem.Mskh = 'TK001';
-        // this.soTietKiem.KhachHang = 'Lê Hiếu';
-        // this.soTietKiem.Cmnd = '365214789';
-        // this.soTietKiem.DiaChi = 'ấp Định Mỹ, xã Định Môn, huyện Thới Lai, Tp.CT';
-        // this.soTietKiem.SoTienGui = 1000000;
+        this.soTietKiem.Mskh = 'TK001';
+        this.soTietKiem.KhachHang = 'Lê Hiếu';
+        this.soTietKiem.Cmnd = '365214789';
+        this.soTietKiem.DiaChi = 'ấp Định Mỹ, xã Định Môn, huyện Thới Lai, Tp.CT';
+        this.soTietKiem.SoTienGui = 1000000;
 
         const date = new Date();
         this.minDate = { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
     }
 
     moSoTietKiem() {
-        this.soTietKiem.NgayMoSo = this.currentDate.year.toString() +
+        let validate = this.validateToast();
+        if(validate) {
+            this.soTietKiem.NgayMoSo = this.currentDate.year.toString() +
             '-' + (this.currentDate.month).toString() + '-' + this.currentDate.day.toString();
-
-        // this.moSo();
+            this.moSo();
+        }
     }
 
     moSo() {
@@ -57,5 +59,16 @@ export class MoSoTKComponent implements OnInit {
             err => { this.toastService.show('Mở sổ thất bại. Vui lòng thử lại sau!',
                     'Thông báo', { classname: 'bg-danger text-light', delay: 2000 }); },
             () => { });
+    }
+
+    validateToast(): boolean {
+        if ( this.soTietKiem.Mskh === '' || this.soTietKiem.KhachHang === ''
+                || this.soTietKiem.Cmnd === '' || this.soTietKiem.DiaChi === ''
+                || this.currentDate.year === null || this.soTietKiem.SoTienGui === null) {
+            this.toastService.show('Vui lòng điền đầy đủ thông tin Mở sổ.', 'Thông báo',
+            { classname: 'bg-danger text-light', delay: 4000 });
+            return false;
+        }
+        return true;
     }
 }
