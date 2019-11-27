@@ -7,7 +7,7 @@ if (environment.production) {
     _API = '/';
     _WEBURL = '/';
 } else {
-    _API = 'http://localhost:5001/';
+    _API = 'http://localhost:5000/';
     _WEBURL = '/';
 }
 export const API = _API;

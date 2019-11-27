@@ -39,7 +39,7 @@ export class ThemLoaiTietKiemComponent implements OnInit {
         } else {
             this.laiSuatInvalid = false;
         }
-        if (!this.loaiTietKiem.kyHan) {
+        if (this.loaiTietKiem.kyHan && this.loaiTietKiem.kyHan < 0) {
             this.kyHanInvalid = true;
             return false;
         } else {

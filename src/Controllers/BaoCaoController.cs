@@ -55,8 +55,31 @@ namespace SoTietKiem.Controllers
                 var isExistDoanhSoChi = doanhSoChi.Any();
                 if (isExistDoanhSoThu && isExistDoanhSoChi) 
                 {
-                    var doanhSoNgay = from thu in doanhSoThu
-                                  join chi in doanhSoChi on thu.LoaiTietKiemId equals chi.LoaiTietKiemId
+                    var loaiTk = (from thu in doanhSoThu select new { LoaiTietKiemId = thu.LoaiTietKiemId, TenLoaiTietKiem = thu.TenLoaiTietKiem })
+                                .Union(from chi in doanhSoChi select new { LoaiTietKiemId = chi.LoaiTietKiemId, TenLoaiTietKiem = chi.TenLoaiTietKiem });
+
+                    var doanhSoThuByLoaiTietKiem = from l in loaiTk
+                                                   join thu in doanhSoThu on l.LoaiTietKiemId equals thu.LoaiTietKiemId into dstltk
+                                                   from p in dstltk.DefaultIfEmpty()
+                                                   select new 
+                                                   {
+                                                       LoaiTietKiemId = l.LoaiTietKiemId,
+                                                       TenLoaiTietKiem = l.TenLoaiTietKiem,
+                                                       TongThu = p == null ? 0 : p.TongThu 
+                                                   };
+
+                    var doanhSoChiByLoaiTietKiem = from l in loaiTk
+                                                   join chi in doanhSoChi on l.LoaiTietKiemId equals chi.LoaiTietKiemId into dscltk
+                                                   from p in dscltk.DefaultIfEmpty()
+                                                   select new
+                                                   {
+                                                       LoaiTietKiemId = l.LoaiTietKiemId,
+                                                       TenLoaiTietKiem = l.TenLoaiTietKiem,
+                                                       TongChi = p == null ? 0 : p.TongChi
+                                                   };
+
+                    var doanhSoNgay = from thu in doanhSoThuByLoaiTietKiem
+                                      join chi in doanhSoChiByLoaiTietKiem on thu.LoaiTietKiemId equals chi.LoaiTietKiemId
                                   into temp from j in temp.DefaultIfEmpty()
                                       select new DoanhSoDto
                                   {
@@ -138,8 +161,29 @@ namespace SoTietKiem.Controllers
                 var isExistDoanhSoChi = doanhSoDong.Any();
                 if (isExistDoanhSoThu && isExistDoanhSoChi)
                 {
-                    var doanhSoThang = from mo in doanhSoMo
-                                      join dong in doanhSoDong on mo.Ngay.Date equals dong.Ngay.Date
+                    var loaiTk = (from mo in doanhSoMo select new { Ngay = mo.Ngay })
+                                .Union(from dong in doanhSoDong select new { Ngay = dong.Ngay });
+
+                    var doanhSoMoByLoaiTietKiem = from l in loaiTk
+                                                   join mo in doanhSoMo on l.Ngay equals mo.Ngay into dsmltk
+                                                   from p in dsmltk.DefaultIfEmpty()
+                                                   select new
+                                                   {
+                                                       Ngay = l.Ngay,
+                                                       TongMo = p == null ? 0 : p.TongMo
+                                                   };
+
+                    var doanhSoDongByLoaiTietKiem = from l in loaiTk
+                                                   join dong in doanhSoDong on l.Ngay equals dong.Ngay into dsdltk
+                                                   from p in dsdltk.DefaultIfEmpty()
+                                                   select new
+                                                   {
+                                                       Ngay = l.Ngay,
+                                                       TongDong = p == null ? 0 : p.TongDong
+                                                   };
+
+                    var doanhSoThang = from mo in doanhSoMoByLoaiTietKiem
+                                       join dong in doanhSoDongByLoaiTietKiem on mo.Ngay.Date equals dong.Ngay.Date
                                       into temp
                                       from j in temp.DefaultIfEmpty()
                                       select new DoanhSoMoDongDto
