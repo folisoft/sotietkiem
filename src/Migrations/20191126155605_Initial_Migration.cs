@@ -54,7 +54,7 @@ namespace SoTietKiem.Migrations
                 name: "SoTK",
                 columns: table => new
                 {
-                    MSKH = table.Column<string>(maxLength: 5, nullable: false),
+                    MSKH = table.Column<string>(maxLength: 36, nullable: false),
                     LoaiTietKiemId = table.Column<int>(nullable: false),
                     KhachHang = table.Column<string>(maxLength: 255, nullable: true),
                     CMND = table.Column<string>(maxLength: 13, nullable: true),
@@ -81,7 +81,7 @@ namespace SoTietKiem.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MSKH = table.Column<string>(maxLength: 5, nullable: true),
+                    MSKH = table.Column<string>(maxLength: 36, nullable: true),
                     KhachHang = table.Column<string>(maxLength: 255, nullable: true),
                     SoTien = table.Column<double>(nullable: true),
                     Ngay = table.Column<DateTime>(type: "datetime", nullable: true)
@@ -102,7 +102,7 @@ namespace SoTietKiem.Migrations
                 columns: table => new
                 {
                     PhieuGuiRutTienId = table.Column<int>(nullable: false),
-                    MSKH = table.Column<string>(maxLength: 5, nullable: true),
+                    MSKH = table.Column<string>(maxLength: 36, nullable: true),
                     NgayGui = table.Column<DateTime>(type: "datetime", nullable: true),
                     SoTienGui = table.Column<double>(nullable: true),
                     NgayRut = table.Column<DateTime>(type: "datetime", nullable: true),

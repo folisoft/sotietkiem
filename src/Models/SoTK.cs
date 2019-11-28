@@ -7,6 +7,7 @@ namespace SoTietKiem.Models
     {
         public SoTk()
         {
+            Mskh = Guid.NewGuid().ToString();
             PhieuGuiRutTien = new HashSet<PhieuGuiRutTien>();
         }
 

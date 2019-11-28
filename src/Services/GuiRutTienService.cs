@@ -16,22 +16,8 @@ namespace SoTietKiem.Services
             this.context = context;
         }
 
-        public async Task<bool> ThemGuiRut(ThemGuiRutTienRequest request)
+        public async Task<bool> ThemGuiRut(ThemGuiRutTienRequest request,SoTk soTietKiem, LoaiTietKiem loaiTietKiem, LoaiTietKiem khongKyHan, ChiTietSoTietKiem chitietSoTruoc)
         {
-            var soTietKiem = context.SoTk.Find(request.MSKH);
-            var loaiTietKiem = context.LoaiTietKiem.Find(soTietKiem.LoaiTietKiemId);
-            var khongKyHan = context.LoaiTietKiem.Find(1);
-            var chitietSoTruoc = context.ChiTietSoTietKiem.Where(ct => ct.Mskh == request.MSKH).OrderByDescending(ord => ord.NgayGui).ToList()[0];
-            if(loaiTietKiem.KyHan > 0)
-            {
-                var truoc = request.Ngay;
-                var sau = chitietSoTruoc.NgayGui;
-                int soNam = truoc.Year - sau.Value.Year;
-                int soThang = 0;
-                if (soNam > 0) soThang = truoc.Month + 12 - sau.Value.Month;
-                else soThang = truoc.Month - sau.Value.Month;
-                if (soThang < loaiTietKiem.KyHan) return false;
-            }
 
             if (request.Action == "GUI")
             {
@@ -39,8 +25,9 @@ namespace SoTietKiem.Services
             }
             else if (request.Action == "RUT")
             {
+                request.Action = double.Parse(request.SoTien.ToString())== soTietKiem.SoDu ? "DONG" : "RUT";
                 request.SoTien = request.SoTien * -1;
-                return this.GuiRutTien(request, chitietSoTruoc, loaiTietKiem, khongKyHan, "RUT", soTietKiem);
+                return this.GuiRutTien(request, chitietSoTruoc, loaiTietKiem, khongKyHan, request.Action, soTietKiem);
             }
             else return false;
         }
@@ -54,14 +41,6 @@ namespace SoTietKiem.Services
             return result;
         }
 
-        //private bool RutTien(ThemGuiRutTienRequest request, LoaiTietKiem loaitietkiem, LoaiTietKiem khongkyhan)
-        //{
-        //    var phieuGuiTien = this.TaoPhieuGuiRut(request);
-        //    if (phieuGuiTien == null) return false;
-        //    var chitietSoTruoc = context.ChiTietSoTietKiem.OrderByDescending(ord => ord.NgayGui).ToList()[0];
-            
-        //}
-
         #region GUI RUT TIEN
         private bool AddChiTietSo(PhieuGuiRutTien phieuGuiTien, ChiTietSoTietKiem chitietSoTruoc, LoaiTietKiem loaitietkiem, LoaiTietKiem khongkyhan, string nghiepvu, SoTk soTietKiem)
         {
@@ -72,33 +51,42 @@ namespace SoTietKiem.Services
             int soThang = 0;
             if (soNam > 0) soThang = phieuGuiTien.Ngay.Value.Month + 12 - chitietSoTruoc.NgayGui.Value.Month;
             else soThang = phieuGuiTien.Ngay.Value.Month - chitietSoTruoc.NgayGui.Value.Month;
-            var soNgay = Math.Abs(phieuGuiTien.Ngay.Value.Day - chitietSoTruoc.NgayGui.Value.Month);
-            if (soThang > 0 && nghiepvu == "GUI")
+            var soNgay = Math.Abs(phieuGuiTien.Ngay.Value.Day - chitietSoTruoc.NgayGui.Value.Day);
+            if (soThang > 0 && nghiepvu != "DONG")
             {
                 addChiTietSo.SoThangLaiSuat = soThang;
                 addChiTietSo.LaiSuatThang = this.LaiThang(chitietSoTruoc.SoDuCuoiKy.Value, addChiTietSo.LaiSuat.Value / 100, (double)soThang);
                 addChiTietSo.SoNgayLaiSuat = 0;
                 addChiTietSo.LaiSuatNgay = 0;
             }
-            if (soNgay > 0 && nghiepvu == "GUI")
+            if (soNgay > 0 && nghiepvu != "DONG")
             {
                 addChiTietSo.SoNgayLaiSuat = (int)soNgay;
                 addChiTietSo.LaiSuatNgay = this.LaiNgay(chitietSoTruoc.SoDuCuoiKy.Value, khongkyhan.LaiSuat / 100, (double)soThang, soNgay);
             }
 
-            if(nghiepvu == "RUT")
+            if (nghiepvu == "RUT")
+            {
+                addChiTietSo.SoThangLaiSuat = soThang;
+                addChiTietSo.LaiSuatThang = this.LaiThang(chitietSoTruoc.SoDuCuoiKy.Value, addChiTietSo.LaiSuat.Value / 100, (double)soThang);
+                addChiTietSo.SoNgayLaiSuat = 0;
+                addChiTietSo.LaiSuatNgay = 0;
+            }
+
+            if (nghiepvu == "DONG")
             {
                 addChiTietSo.SoThangLaiSuat = 0;
                 addChiTietSo.LaiSuatThang = 0;
                 addChiTietSo.SoNgayLaiSuat = 0;
                 addChiTietSo.LaiSuatNgay = 0;
             }
+
             addChiTietSo.SoDuCuoiKy = addChiTietSo.SoDuDauKy + addChiTietSo.LaiSuatThang + addChiTietSo.LaiSuatNgay;
 
             context.ChiTietSoTietKiem.Add(addChiTietSo);
 
             soTietKiem.SoDu = addChiTietSo.SoDuCuoiKy;
-            if(nghiepvu == "RUT")
+            if(nghiepvu == "DONG")
             {
                 soTietKiem.NgayDongSo = DateTime.Now;
                 soTietKiem.SoDu = 0;
@@ -148,7 +136,7 @@ namespace SoTietKiem.Services
             {
                 Mskh = request.MSKH,
                 KhachHang = request.KhachHang,
-                SoTien = request.SoTien,
+                SoTien = Convert.ToDouble(request.SoTien.ToString()),
                 Ngay = request.Ngay
             };
             context.PhieuGuiRutTien.Add(phieuGuiRut);
@@ -169,8 +157,7 @@ namespace SoTietKiem.Services
                 LaiSuat = loaitietkiem.LaiSuat,
 
             };
-            if (nghiepvu == "RUT") result.SoDuDauKy = chitietSoTruoc.SoDuCuoiKy + 0;
-            if (nghiepvu == "GUI") result.SoDuDauKy = chitietSoTruoc.SoDuCuoiKy + phieuGuiTien.SoTien;
+            result.SoDuDauKy = chitietSoTruoc.SoDuCuoiKy + phieuGuiTien.SoTien;
             return result;
         }
     }

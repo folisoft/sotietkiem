@@ -10,9 +10,11 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceModule } from './service/service.module';
 import { DatePipe } from '@angular/common';
+import { NgbDateCustomParserFormatter } from './components/datepicker-parse';
+// import {} from '../'
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { DatePipe } from '@angular/common';
     ServiceModule
   ],
   providers: [
-    DatePipe
+    DatePipe,
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }
   ],
   bootstrap: [AppComponent]
 })

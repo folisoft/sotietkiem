@@ -25,15 +25,15 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="KhachHang">Khách hàng</label>
-                    <input type="text" id="KhachHang" class="form-control form-control-alternative" placeholder="Tên khách hàng"
-                    [(ngModel)]="soTietKiem.KhachHang" name='KhachHang'>
+                    <input type="text" id="KhachHang" class="form-control form-control-alternative"
+                      placeholder="Tên khách hàng" [(ngModel)]="soTietKiem.KhachHang" name='KhachHang'>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="Cmnd">CMND</label>
                     <input type="text" id="Cmnd" class="form-control form-control-alternative" placeholder="123456789"
-                    [(ngModel)]="soTietKiem.Cmnd" name='Cmnd' maxlength="13">
+                      [(ngModel)]="soTietKiem.Cmnd" name='Cmnd' maxlength="13">
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                   <div class="form-group">
                     <label class="form-control-label" for="DiaChi">Địa chỉ</label>
                     <input type="text" id="DiaChi" class="form-control form-control-alternative" placeholder="Địa chỉ"
-                    [(ngModel)]="soTietKiem.DiaChi" name='DiaChi'>
+                      [(ngModel)]="soTietKiem.DiaChi" name='DiaChi'>
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -52,8 +52,9 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                       </div>
-                      <input class="form-control datepicker" placeholder="Chọn ngày Mở sổ" [(ngModel)]="currentDate" name='currentDate' 
-                      ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" [minDate]="this.minDate"/>
+                      <input class="form-control datepicker pl-3" placeholder="Chọn ngày Mở sổ" [(ngModel)]="currentDate"
+                        name='currentDate' ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text"
+                        [maxDate]="this.minDate" />
                     </div>
                   </div>
                 </div>
@@ -63,30 +64,34 @@
             <!-- Address -->
             <h6 class="heading-small text-muted mb-4">Thông tin Sổ tiết kiệm</h6>
             <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="Mskh">Mã sổ</label>
-                    <input type="text" id="Mskh" class="form-control form-control-alternative" placeholder="TK001..."
-                    [(ngModel)]="soTietKiem.Mskh" name='Mskh' maxlength="5">
+              <div class="col-md-9 m-auto">
+                <div class="row">
+                  <!-- <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="Mskh">Mã sổ</label>
+                      <input type="text" id="Mskh" class="form-control form-control-alternative" placeholder="TK001..."
+                      [(ngModel)]="soTietKiem.Mskh" name='Mskh' maxlength="5">
+                    </div>
+                  </div> -->
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="LoaiTietKiemId">Loại tiết kiệm</label>
+                      <select *ngIf="loaiTietKiems" class="form-control" id="LoaiTietKiemId"
+                        [(ngModel)]="soTietKiem.LoaiTietKiemId" name="LoaiTietKiemId">
+                        <option *ngFor="let loaiTietKiem of loaiTietKiems" [ngValue]='loaiTietKiem.value'>
+                          {{loaiTietKiem.name}}</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="LoaiTietKiemId">Loại tiết kiệm</label>
-                    <select *ngIf="loaiTietKiems" class="form-control" id="LoaiTietKiemId" [(ngModel)]="soTietKiem.LoaiTietKiemId" name="LoaiTietKiemId">
-                      <option *ngFor="let loaiTietKiem of loaiTietKiems" [ngValue]='loaiTietKiem.value'>{{loaiTietKiem.name}}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="SoTienGui">Số tiền gửi</label>
-                    <div class="input-group mb-4">
-                      <input type="number" id="SoTienGui" class="form-control form-control-alternative" placeholder="1,000,000 VNĐ"
-                      [(ngModel)]="soTietKiem.SoTienGui" name='SoTienGui' >
-                      <div class="input-group-append">
-                        <span class="input-group-text">VNĐ</span>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="SoTienGui">Số tiền gửi</label>
+                      <div class="input-group mb-4">
+                        <input type="number" id="SoTienGui" class="form-control form-control-alternative"
+                          placeholder="1,000,000 VNĐ" [(ngModel)]="soTietKiem.SoTienGui" name='SoTienGui'>
+                        <div class="input-group-append">
+                          <span class="input-group-text">VNĐ</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -97,8 +102,8 @@
               <div class="row">
                 <!-- <div class="col-md-9"></div> -->
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-success float-right" (click)="moSoTietKiem()">Mở Sổ</button>
-                  </div>
+                  <button type="button" class="btn btn-success float-right" (click)="moSoTietKiem()">Mở Sổ</button>
+                </div>
               </div>
             </div>
           </form>

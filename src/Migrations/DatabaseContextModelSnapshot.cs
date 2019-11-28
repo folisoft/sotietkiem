@@ -38,8 +38,8 @@ namespace SoTietKiem.Migrations
 
                     b.Property<string>("Mskh")
                         .HasColumnName("MSKH")
-                        .HasColumnType("nvarchar(5)")
-                        .HasMaxLength(5);
+                        .HasColumnType("nvarchar(32)")
+                        .HasMaxLength(32);
 
                     b.Property<DateTime?>("NgayGui")
                         .HasColumnType("datetime");
@@ -131,8 +131,8 @@ namespace SoTietKiem.Migrations
 
                     b.Property<string>("Mskh")
                         .HasColumnName("MSKH")
-                        .HasColumnType("nvarchar(5)")
-                        .HasMaxLength(5);
+                        .HasColumnType("nvarchar(32)")
+                        .HasMaxLength(32);
 
                     b.Property<DateTime?>("Ngay")
                         .HasColumnType("datetime");
@@ -170,8 +170,8 @@ namespace SoTietKiem.Migrations
                 {
                     b.Property<string>("Mskh")
                         .HasColumnName("MSKH")
-                        .HasColumnType("nvarchar(5)")
-                        .HasMaxLength(5);
+                        .HasColumnType("nvarchar(32)")
+                        .HasMaxLength(32);
 
                     b.Property<string>("Cmnd")
                         .HasColumnName("CMND")
