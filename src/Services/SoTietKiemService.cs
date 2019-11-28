@@ -19,47 +19,52 @@ namespace SoTietKiem.Services
 
         public async Task<bool> MoSoTietKiemAsync(SoTietKiemRequest request)
         {
-            var soTK = new SoTk();
-            soTK.Mskh = request.Mskh;
-            soTK.LoaiTietKiemId = request.LoaiTietKiemId;
-            soTK.KhachHang = request.KhachHang;
-            soTK.Cmnd = request.Cmnd;
-            soTK.DiaChi = request.DiaChi;
-            soTK.NgayMoSo = request.NgayMoSo;
-            soTK.SoTienGui = request.SoTienGui;
-            //soTK.NgayDongSo = request.NgayDongSo;
-            soTK.SoDu = request.SoTienGui;
-            context.SoTk.Add(soTK);
-
-            var phieuGuiTien = new PhieuGuiRutTien
+            try
             {
-                Mskh = request.Mskh,
-                KhachHang = request.KhachHang,
-                SoTien = request.SoTienGui,
-                Ngay = DateTime.Now
-            };
-            context.PhieuGuiRutTien.Add(phieuGuiTien);
-            context.SaveChanges();
+                var soTK = new SoTk();
+                soTK.LoaiTietKiemId = request.LoaiTietKiemId;
+                soTK.KhachHang = request.KhachHang;
+                soTK.Cmnd = request.Cmnd;
+                soTK.DiaChi = request.DiaChi;
+                soTK.NgayMoSo = request.NgayMoSo;
+                soTK.SoTienGui = request.SoTienGui;
+                soTK.SoDu = request.SoTienGui;
+                context.SoTk.Add(soTK);
 
-            var loaiTK = context.LoaiTietKiem.Find(request.LoaiTietKiemId);
-            var chiTietSo = new ChiTietSoTietKiem
+                var phieuGuiTien = new PhieuGuiRutTien
+                {
+                    Mskh = soTK.Mskh,
+                    KhachHang = request.KhachHang,
+                    SoTien = request.SoTienGui,
+                    Ngay = DateTime.Now
+                };
+                context.PhieuGuiRutTien.Add(phieuGuiTien);
+                context.SaveChanges();
+
+                var loaiTK = context.LoaiTietKiem.Find(request.LoaiTietKiemId);
+                var chiTietSo = new ChiTietSoTietKiem
+                {
+                    PhieuGuiRutTienId = phieuGuiTien.Id,
+                    Mskh = soTK.Mskh,
+                    NgayGui = request.NgayMoSo,
+                    SoTienGui = request.SoTienGui,
+                    LoaiTietKiemId = request.LoaiTietKiemId,
+                    LaiSuat = loaiTK.LaiSuat,
+                    SoDuDauKy = 0,
+                    SoDuCuoiKy = request.SoTienGui,
+                    SoThangLaiSuat = 0,
+                    SoNgayLaiSuat = 0,
+                    LaiSuatNgay = 0,
+                    NghiepVu = "MO"
+                };
+                context.ChiTietSoTietKiem.Add(chiTietSo);
+
+                return await context.SaveChangesAsync() > 0;
+            }
+            catch(Exception e)
             {
-                PhieuGuiRutTienId = phieuGuiTien.Id,
-                Mskh = request.Mskh,
-                NgayGui = request.NgayMoSo,
-                SoTienGui = request.SoTienGui,
-                LoaiTietKiemId = request.LoaiTietKiemId,
-                LaiSuat = loaiTK.LaiSuat,
-                SoDuDauKy = 0,
-                SoDuCuoiKy = request.SoTienGui,
-                SoThangLaiSuat = 0,
-                SoNgayLaiSuat = 0,
-                LaiSuatNgay = 0,
-                NghiepVu = "MO"
-            };
-            context.ChiTietSoTietKiem.Add(chiTietSo);
-
-            return await context.SaveChangesAsync() > 0;
+                throw e;
+            }
         }
     }
 
