@@ -52,7 +52,7 @@ export class MoSoTKComponent implements OnInit {
     moSo() {
         this.sotietkiemService.moSoTietKiem(this.soTietKiem).subscribe(rs => {
             if (rs.status) {
-                this.toastService.show(rs.message, 'Thông báo', { classname: 'bg-success text-light', delay: 2000 });
+                this.toastService.show(rs.message, 'Thông báo', { classname: 'bg-success text-light', delay: 1400 });
                 setTimeout(() => { this.router.navigate(['ds-sotk']); }, 1500);
             } else {
                 this.toastService.show(rs.message,

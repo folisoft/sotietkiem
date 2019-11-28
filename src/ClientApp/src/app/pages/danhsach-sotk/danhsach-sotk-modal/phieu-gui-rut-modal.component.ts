@@ -10,20 +10,25 @@ export class PhieuGuiRutModal implements OnInit {
     constructor(
         private activeModal: NgbActiveModal,
         private guiRutTienService: GuiRutTienService,
-        ) { }
+    ) { }
 
     @Input() action: string;
     @Input() khachhang: string;
     @Input() mskh: string;
     @Input() cmnd: string;
+    @Input() sodu: number;
     request = new ThemGuiRutTienRequest();
     ngay: NgbDate;
     minDate: any;
+    showSoDu: number;
 
     ngOnInit() {
         this.request.MSKH = this.mskh;
         this.request.KhachHang = this.khachhang;
         const currentDate = new Date();
+        if (this.action === 'Rút') {
+            this.request.SoTien = this.sodu;
+        }
 
         this.minDate = { year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate() };
     }

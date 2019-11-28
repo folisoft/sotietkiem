@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PhieuGuiRutModal } from './danhsach-sotk-modal/phieu-gui-rut-modal.component';
 import { SoTietKiemService, SoTietKiemResponse } from 'src/app/service/soktietkiem.service';
 import { LoaiTietKiemService, LoaiTietKiemModel } from 'src/app/service/loaitietkiem.service';
+import { ToastService } from 'src/app/service/toast.service';
 
 @Component({
     selector: 'ds-sotk',
@@ -18,6 +19,7 @@ export class DanhSachSoTKComponent implements OnInit {
         private router: Router,
         private soTietKiemService: SoTietKiemService,
         private _loaiTietKiemService: LoaiTietKiemService,
+        private toastService: ToastService,
     ) { }
     TableName = 'Danh sách Sổ tiết kiệm';
     columnName = [];
@@ -26,11 +28,11 @@ export class DanhSachSoTKComponent implements OnInit {
     idLoaiDuocChon: any;
     searchKey = '';
 
-    ngOnInit() { 
+    ngOnInit() {
         this.columnName = COLUMNNAME;
 
         this._loaiTietKiemService.getAll().subscribe((res: LoaiTietKiemModel[]) => {
-            this.loaiTietKiems = res.map(item => ({value: item.id, name: item.tenLoaiTietKiem}));
+            this.loaiTietKiems = res.map(item => ({ value: item.id, name: item.tenLoaiTietKiem }));
         });
         this.idLoaiDuocChon = '';
         this.getData();
@@ -47,15 +49,22 @@ export class DanhSachSoTKComponent implements OnInit {
     }
 
     lapPhieuGuiTien(row) {
-        var modalRef = this.modalService.open(PhieuGuiRutModal,{ centered: true, size: 'lg' });
+        var modalRef = this.modalService.open(PhieuGuiRutModal, { centered: true, size: 'lg' });
         modalRef.componentInstance.action = 'Gửi';
         modalRef.componentInstance.mskh = row.mskh;
         modalRef.componentInstance.khachhang = row.khachHang;
         modalRef.componentInstance.cmnd = row.cmnd;
+        modalRef.componentInstance.sodu = row.soDu;
         modalRef.result.then(rs => {
-            this.getData();
+            if (!rs.status) {
+                this.toastService.show('Gửi tiền thất bại. ' + rs.message, 'Thông báo', { classname: 'bg-danger text-light', delay: 1400 });
+            }
+            else {
+                this.toastService.show('Gửi tiền thành công!', 'Thông báo', { classname: 'bg-success text-light', delay: 1400 });
+                this.getData();
+            }
         })
-        .catch(err => {});
+            .catch(err => { });
     }
 
     lapPhieuRutTien(row) {
@@ -64,22 +73,29 @@ export class DanhSachSoTKComponent implements OnInit {
         modalRef.componentInstance.mskh = row.mskh;
         modalRef.componentInstance.khachhang = row.khachHang;
         modalRef.componentInstance.cmnd = row.cmnd;
+        modalRef.componentInstance.sodu = row.soDu;
         modalRef.result.then(rs => {
-            this.getData();
+            if (!rs.status) {
+                this.toastService.show('Rút tiền thất bại. ' + rs.message, 'Thông báo', { classname: 'bg-danger text-light', delay: 1400 });
+            }
+            else {
+                this.toastService.show('Rút tiền thành công!', 'Thông báo', { classname: 'bg-success text-light', delay: 1400 });
+                this.getData();
+            }
         })
-        .catch(err => {});
+            .catch(err => { });
     }
 
 
 }
 
 export const COLUMNNAME = [
-    {prop: '', name: 'STT'},
+    { prop: '', name: 'STT' },
     // {prop: 'mskh', name: 'Mã Số'},
-    {prop: 'loaiTietKiemId', name: 'Loại Tiết Kiệm'},
-    {prop: 'khachHang', name: 'Khách Hàng'},
-    {prop: 'cmnd', name: 'CMND'},
-    {prop: 'ngayMoSo', name: 'Ngày mở sổ'},
-    {prop: 'ngayDongSo', name: 'Ngày đóng sổ'},
-    {prop: 'soDu', name: 'Số Dư'},
+    { prop: 'loaiTietKiemId', name: 'Loại Tiết Kiệm' },
+    { prop: 'khachHang', name: 'Khách Hàng' },
+    { prop: 'cmnd', name: 'CMND' },
+    { prop: 'ngayMoSo', name: 'Ngày mở sổ' },
+    { prop: 'ngayDongSo', name: 'Ngày đóng sổ' },
+    { prop: 'soDu', name: 'Số Dư' },
 ]
