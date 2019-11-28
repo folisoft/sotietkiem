@@ -3,6 +3,7 @@ import { SoTietKiemRequest, SoTietKiemService } from 'src/app/service/soktietkie
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ToastService } from 'src/app/service/toast.service';
 import { LoaiTietKiemService, LoaiTietKiemModel } from 'src/app/service/loaitietkiem.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'mo-sotk',
@@ -15,6 +16,7 @@ export class MoSoTKComponent implements OnInit {
         private sotietkiemService: SoTietKiemService,
         private toastService: ToastService,
         private _loaiTietKiemService: LoaiTietKiemService,
+        private router: Router,
     ) { }
     TableName = 'Mở Sổ Tiết kiệm';
     soTietKiem = new SoTietKiemRequest();
@@ -24,7 +26,7 @@ export class MoSoTKComponent implements OnInit {
 
     ngOnInit() {
         this._loaiTietKiemService.getAll().subscribe((res: LoaiTietKiemModel[]) => {
-            this.loaiTietKiems = res.map(item => ({value: item.id, name: item.tenLoaiTietKiem}));
+            this.loaiTietKiems = res.map(item => ({ value: item.id, name: item.tenLoaiTietKiem }));
         });
 
         this.soTietKiem.LoaiTietKiemId = 1;
@@ -40,9 +42,9 @@ export class MoSoTKComponent implements OnInit {
 
     moSoTietKiem() {
         let validate = this.validateToast();
-        if(validate) {
+        if (validate) {
             this.soTietKiem.NgayMoSo = this.currentDate.year.toString() +
-            '-' + (this.currentDate.month).toString() + '-' + this.currentDate.day.toString();
+                '-' + (this.currentDate.month).toString() + '-' + this.currentDate.day.toString();
             this.moSo();
         }
     }
@@ -51,22 +53,25 @@ export class MoSoTKComponent implements OnInit {
         this.sotietkiemService.moSoTietKiem(this.soTietKiem).subscribe(rs => {
             if (rs.status) {
                 this.toastService.show(rs.message, 'Thông báo', { classname: 'bg-success text-light', delay: 2000 });
+                setTimeout(() => { this.router.navigate(['ds-sotk']); }, 1500);
             } else {
                 this.toastService.show(rs.message,
                     'Thông báo', { classname: 'bg-danger text-light', delay: 4000 });
             }
         },
-            err => { this.toastService.show('Mở sổ thất bại. Vui lòng thử lại sau!',
-                    'Thông báo', { classname: 'bg-danger text-light', delay: 2000 }); },
+            err => {
+                this.toastService.show('Mở sổ thất bại. Vui lòng thử lại sau!',
+                    'Thông báo', { classname: 'bg-danger text-light', delay: 2000 });
+            },
             () => { });
     }
 
     validateToast(): boolean {
-        if ( this.soTietKiem.Mskh === '' || this.soTietKiem.KhachHang === ''
-                || this.soTietKiem.Cmnd === '' || this.soTietKiem.DiaChi === ''
-                || this.currentDate.year === null || this.soTietKiem.SoTienGui === null) {
+        if (this.soTietKiem.Mskh === '' || this.soTietKiem.KhachHang === ''
+            || this.soTietKiem.Cmnd === '' || this.soTietKiem.DiaChi === ''
+            || this.currentDate.year === null || this.soTietKiem.SoTienGui === null) {
             this.toastService.show('Vui lòng điền đầy đủ thông tin Mở sổ.', 'Thông báo',
-            { classname: 'bg-danger text-light', delay: 4000 });
+                { classname: 'bg-danger text-light', delay: 4000 });
             return false;
         }
         return true;

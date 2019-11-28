@@ -50,12 +50,13 @@
               </tr>
             </thead>
             <tbody *ngIf="this.rows?.length > 0" >
-              <tr *ngFor="let row of rows">
-                <td colspan="1">{{row.mskh}}</td>
+              <tr *ngFor="let row of rows; let i = index">
+                <td colspan="1">{{i + 1}}</td>
+                <!-- <td colspan="1">{{row.mskh}}</td> -->
                 <td colspan="1">{{row.loaiTietKiem.tenLoaiTietKiem}}</td>
                 <td colspan="1">{{row.khachHang}}</td>
                 <td colspan="1">{{row.cmnd}}</td>
-                <td colspan="1">{{row.ngayMoSo | date: 'dd/MM/yyyy hh:mm'}}</td>
+                <td colspan="1">{{row.ngayMoSo | date: 'dd/MM/yyyy'}}</td>
                 <td colspan="1">{{row.ngayDongSo ? (row.ngayDongSo | date: 'dd/MM/yyyy hh:mm'): 'Chưa đóng sổ'}}</td>
                 <td colspan="1">{{row.soDu | number:'4.0-0'}} VNĐ</td>
                 <td class="text-right">

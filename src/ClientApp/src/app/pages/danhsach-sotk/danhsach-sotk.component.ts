@@ -51,7 +51,7 @@ export class DanhSachSoTKComponent implements OnInit {
         modalRef.componentInstance.action = 'Gửi';
         modalRef.componentInstance.mskh = row.mskh;
         modalRef.componentInstance.khachhang = row.khachHang;
-        modalRef.componentInstance.coKyHan = row.loaiTietKiemId != 1;
+        modalRef.componentInstance.cmnd = row.cmnd;
         modalRef.result.then(rs => {
             this.getData();
         })
@@ -63,6 +63,7 @@ export class DanhSachSoTKComponent implements OnInit {
         modalRef.componentInstance.action = 'Rút';
         modalRef.componentInstance.mskh = row.mskh;
         modalRef.componentInstance.khachhang = row.khachHang;
+        modalRef.componentInstance.cmnd = row.cmnd;
         modalRef.result.then(rs => {
             this.getData();
         })
@@ -73,8 +74,8 @@ export class DanhSachSoTKComponent implements OnInit {
 }
 
 export const COLUMNNAME = [
-    // {prop: '', name: 'STT'},
-    {prop: 'mskh', name: 'Mã Số'},
+    {prop: '', name: 'STT'},
+    // {prop: 'mskh', name: 'Mã Số'},
     {prop: 'loaiTietKiemId', name: 'Loại Tiết Kiệm'},
     {prop: 'khachHang', name: 'Khách Hàng'},
     {prop: 'cmnd', name: 'CMND'},

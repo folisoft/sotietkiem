@@ -15,8 +15,7 @@ export class PhieuGuiRutModal implements OnInit {
     @Input() action: string;
     @Input() khachhang: string;
     @Input() mskh: string;
-    @Input() coKyHan: boolean;
-    @Input() denKyHan: boolean;
+    @Input() cmnd: string;
     request = new ThemGuiRutTienRequest();
     ngay: NgbDate;
     minDate: any;

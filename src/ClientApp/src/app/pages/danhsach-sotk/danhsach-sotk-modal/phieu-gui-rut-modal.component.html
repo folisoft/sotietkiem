@@ -11,17 +11,19 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="form-group">
-            <label class="form-control-label" for="cmnd">Mã số</label>
-            <input type="text" id="mskh" class="form-control form-control-alternative" placeholder="TK001" [(ngModel)]="request.MSKH" name="MSKH" required [disabled]="true">
+            <label class="form-control-label" for="cmnd">CMND</label>
+            <input type="text" id="cmnd" class="form-control form-control-alternative"
+              [(ngModel)]="cmnd" name="cmnd" required [disabled]="true">
           </div>
         </div>
-      <div class="col-lg-6">
-        <div class="form-group">
-          <label class="form-control-label" for="khachhang">Khách hàng</label>
-          <input type="text" id="khachhang" class="form-control form-control-alternative" placeholder="Tên khách hàng" [(ngModel)]="request.KhachHang" name="KhachHang" required [disabled]="true">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <label class="form-control-label" for="khachhang">Khách hàng</label>
+            <input type="text" id="khachhang" class="form-control form-control-alternative"
+              [(ngModel)]="request.KhachHang" name="KhachHang" required [disabled]="true">
+          </div>
         </div>
       </div>
-    </div>
       <div class="row">
         <div class="col-lg-6">
           <div class="form-group">
@@ -31,8 +33,9 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
               </div>
-              <input class="form-control datepicker" placeholder='Chọn ngày {{action.toLowerCase()}}' [(ngModel)]="ngay" name="ngay"
-              ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text" [minDate]="this.minDate"/>
+              <input class="form-control datepicker" placeholder='Chọn ngày {{action.toLowerCase()}}' [(ngModel)]="ngay"
+                name="ngay" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text"
+                [minDate]="this.minDate" />
             </div>
           </div>
         </div>
@@ -41,7 +44,7 @@
             <label class="form-control-label" for="diachi">Số tiền {{action.toLowerCase()}}</label>
             <div class="input-group">
               <input type="number" id="SoTienGui" class="form-control form-control-alternative"
-              [(ngModel)]="request.SoTien" name="SoTien" required>
+                [(ngModel)]="request.SoTien" name="SoTien" required>
               <div class="input-group-append">
                 <span class="input-group-text">VNĐ</span>
               </div>
