@@ -43,7 +43,7 @@ namespace SoTietKiem.Data
 
                 entity.Property(e => e.Mskh)
                     .HasColumnName("MSKH")
-                    .HasMaxLength(5);
+                    .HasMaxLength(32);
 
                 entity.Property(e => e.NgayGui).HasColumnType("datetime");
 
@@ -72,7 +72,7 @@ namespace SoTietKiem.Data
 
                 entity.Property(e => e.Mskh)
                     .HasColumnName("MSKH")
-                    .HasMaxLength(5);
+                    .HasMaxLength(32);
 
                 entity.Property(e => e.Ngay).HasColumnType("datetime");
 
@@ -108,7 +108,7 @@ namespace SoTietKiem.Data
 
                 entity.Property(e => e.Mskh)
                     .HasColumnName("MSKH")
-                    .HasMaxLength(5);
+                    .HasMaxLength(32);
 
                 entity.Property(e => e.Cmnd)
                     .HasColumnName("CMND")
