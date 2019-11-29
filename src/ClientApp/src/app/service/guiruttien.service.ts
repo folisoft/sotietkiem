@@ -14,6 +14,10 @@ export class GuiRutTienService {
     themGuiRut(request: ThemGuiRutTienRequest): Observable<any> {
         return this._savingBookApi.post(this.guiRutTienUrl, request);
     }
+
+    getPhieuGuiRut(mskh: string): Observable<any> {
+        return this._savingBookApi.get(this.guiRutTienUrl + `?mskh=${mskh}`);
+    }
 }
 
 export class ThemGuiRutTienRequest {

@@ -16,18 +16,22 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <select *ngIf="loaiTietKiems" class="form-control" id="LoaiTietKiemId" [(ngModel)]="idLoaiDuocChon" name="idLoaiDuocChon" (change)="getData()">
+                    <select *ngIf="loaiTietKiems" class="form-control" id="LoaiTietKiemId" [(ngModel)]="idLoaiDuocChon"
+                      name="idLoaiDuocChon" (change)="getData()">
                       <option value=""> -- Chọn loại tiết kiệm --</option>
-                      <option *ngFor="let loaiTietKiem of loaiTietKiems" [ngValue]='loaiTietKiem.value'>{{loaiTietKiem.name}}</option>
+                      <option *ngFor="let loaiTietKiem of loaiTietKiems" [ngValue]='loaiTietKiem.value'>
+                        {{loaiTietKiem.name}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <div class="input-group">
-                      <input class="form-control" placeholder="Nhập mã sổ" type="text" [(ngModel)]="searchKey" name="searchKey" (blur)="getData()">
+                      <input class="form-control" placeholder="Nhập số CMND" type="text" [(ngModel)]="searchKey"
+                        name="searchKey" (blur)="getData()">
                       <div class="input-group-append">
-                        <button type="button" class="btn btn-primary" (click)="getData()"><i class="ni ni-zoom-split-in"></i></button>
+                        <button type="button" class="btn btn-primary" (click)="getData()"><i
+                            class="ni ni-zoom-split-in"></i></button>
                       </div>
                     </div>
                   </div>
@@ -49,7 +53,7 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody *ngIf="this.rows?.length > 0" >
+            <tbody *ngIf="this.rows?.length > 0">
               <tr *ngFor="let row of rows; let i = index">
                 <td colspan="1">{{i + 1}}</td>
                 <!-- <td colspan="1">{{row.mskh}}</td> -->
@@ -57,7 +61,7 @@
                 <td colspan="1">{{row.khachHang}}</td>
                 <td colspan="1">{{row.cmnd}}</td>
                 <td colspan="1">{{row.ngayMoSo | date: 'dd/MM/yyyy'}}</td>
-                <td colspan="1">{{row.ngayDongSo ? (row.ngayDongSo | date: 'dd/MM/yyyy hh:mm'): 'Chưa đóng sổ'}}</td>
+                <td colspan="1">{{row.ngayDongSo ? (row.ngayDongSo | date: 'dd/MM/yyyy'): 'Chưa đóng sổ'}}</td>
                 <td colspan="1">{{row.soDu | number:'4.0-0'}} VNĐ</td>
                 <td class="text-right">
                   <div ngbDropdown placement="bottom-right">
@@ -65,16 +69,19 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <button class="dropdown-item" (click)="lapPhieuGuiTien(row)"><i class="fas fa-plus"></i>Lập phiếu gửi
+                      <button class="dropdown-item" (click)="lapPhieuGuiTien(row)"><i class="fas fa-plus"></i>Lập phiếu
+                        gửi
                         tiền</button>
-                      <button class="dropdown-item" (click)="lapPhieuRutTien(row)"> <i class="fas fa-plus"></i>Lập phiếu rút
+                      <button class="dropdown-item" (click)="lapPhieuRutTien(row)"> <i class="fas fa-plus"></i>Lập phiếu
+                        rút
                         tiền</button>
+                      <button class="dropdown-item" (click)="moChiTietSo(row)"> <i class="fas fa-info-circle"></i>Nhật ký hoạt động</button>
                     </div>
                   </div>
                 </td>
               </tr>
             </tbody>
-            <tbody  *ngIf="this.rows?.length == 0"> Chưa có dữ liệu </tbody>
+            <tbody *ngIf="this.rows?.length == 0"> Chưa có dữ liệu </tbody>
           </table>
         </div>
         <div class="card-footer py-4">

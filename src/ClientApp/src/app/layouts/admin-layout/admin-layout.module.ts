@@ -23,6 +23,7 @@ import { DinhMucComponent } from 'src/app/pages/dinhmuc/dinhmuc.component';
 import { GuiRutTienService } from 'src/app/service/guiruttien.service';
 import { BaoCaoDoanhSoComponent } from 'src/app/pages/baocaodoanhso/baocaodoanhso.component';
 import { BaoCaoMoDongComponent } from 'src/app/pages/baocaomodong/baocaomodong.component';
+import { ChiTietSoModal } from 'src/app/pages/danhsach-sotk/danhsach-sotk-modal/chitietso-modal.component';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -46,7 +47,9 @@ import { BaoCaoMoDongComponent } from 'src/app/pages/baocaomodong/baocaomodong.c
     DanhSachSoTKComponent,
     MoSoTKComponent,
     ThongKeComponent,
+
     PhieuGuiRutModal,
+    ChiTietSoModal,
     NoidungPopup,
     ThemLoaiTietKiemComponent,
     ThongbaoComponent
@@ -54,6 +57,7 @@ import { BaoCaoMoDongComponent } from 'src/app/pages/baocaomodong/baocaomodong.c
   exports: [],
   entryComponents: [
     PhieuGuiRutModal,
+    ChiTietSoModal,
     NoidungPopup,
     ThemLoaiTietKiemComponent,
     ThongbaoComponent

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SoTietKiem.Data;
+using SoTietKiem.Models;
 using SoTietKiem.Services;
 
 namespace SoTietKiem.Controllers
@@ -36,10 +38,22 @@ namespace SoTietKiem.Controllers
                     if (soThang != loaiTietKiem.KyHan) return new { status = false, message = "Vui lòng gửi tiền đúng kỳ hạn." };
                 }
 
-                if(request.SoTien < 100000) return new { status = false, message = "Số tiền gửi phải lớn hơn 100,000 VNĐ." };
+                if (request.SoTien < 100000) return new { status = false, message = "Số tiền gửi phải lớn hơn 100,000 VNĐ." };
 
                 var result = await service.ThemGuiRut(request, soTietKiem, loaiTietKiem, khongKyHan, chitietSoTruoc);
                 return new { status = result };
+            }
+        }
+
+
+        [HttpGet]
+        [Route("")]
+        public async Task<ActionResult<IEnumerable<PhieuGuiRutTien>>> GetChiTietSo(string mskh)
+        {
+            using(var context = new DatabaseContext())
+            {
+                var result = await context.PhieuGuiRutTien.Include(c => c.ChiTietSoTietKiem).Where(p => p.Mskh == mskh).OrderByDescending(ord => ord.Ngay).ToListAsync();
+                return result;
             }
         }
     }
