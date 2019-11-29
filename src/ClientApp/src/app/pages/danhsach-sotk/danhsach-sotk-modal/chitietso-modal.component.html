@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h4 class="modal-title">Chi tiết sổ</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('close')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <h6 class="heading-small text-muted mb-4">Thông tin Khách hàng</h6>
+  <div class="col-md-10 m-auto mb-3">
+    <div class="row">
+      <div class="col-md-3">Khách Hàng:</div>
+      <div class="col-md-3">{{khachhang}}</div>
+      <div class="col-md-3">CMND:</div>
+      <div class="col-md-3">{{cmnd}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Ngày mở sổ:</div>
+      <div class="col-md-3">{{ngaymoso | date: 'dd/MM/yyyy'}}</div>
+      <div class="col-md-3">Số dư hiện tại:</div>
+      <div class="col-md-3">{{sodu | number:'4.0-0'}} VNĐ</div>
+    </div>
+  </div>
+  <h6 class="heading-small text-muted mb-4 mt-4">Nhật kí hoạt động</h6>
+  <div class="table-drop table-hover">
+    <table class="table align-items-center table-flush ">
+      <thead class="thead-light">
+        <tr>
+          <th *ngFor="let colName of columns" scope="col">{{colName.name}}</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="this.rows?.length > 0">
+        <tr *ngFor="let row of rows; let i = index">
+          <td colspan="1">{{i + 1}}</td>
+          <td colspan="1">
+            {{(row.chiTietSoTietKiem.nghiepVu == 'MO' ? 'Mở sổ' : (row.chiTietSoTietKiem.nghiepVu == 'GUI' ? 'Gửi tiền' : (row.chiTietSoTietKiem.nghiepVu == 'RUT' ? 'Rút tiền' : 'Đóng sổ')))}}
+          </td>
+          <td colspan="1">{{row.ngay | date: 'dd/MM/yyyy'}}</td>
+          <td colspan="1">{{row.soTien | number:'4.0-0'}} VNĐ</td>
+          <td colspan="1">{{row.chiTietSoTietKiem.soDuCuoiKy | number:'4.0-0'}} VNĐ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal-footer">
+</div>

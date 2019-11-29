@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { MoSoTkModal } from './danhsach-sotk-modal/mo-sotk-modal.component';
+import { ChiTietSoModal } from './danhsach-sotk-modal/chitietso-modal.component';
 import { Router } from '@angular/router';
 import { PhieuGuiRutModal } from './danhsach-sotk-modal/phieu-gui-rut-modal.component';
 import { SoTietKiemService, SoTietKiemResponse } from 'src/app/service/soktietkiem.service';
@@ -74,6 +74,25 @@ export class DanhSachSoTKComponent implements OnInit {
         modalRef.componentInstance.khachhang = row.khachHang;
         modalRef.componentInstance.cmnd = row.cmnd;
         modalRef.componentInstance.sodu = row.soDu;
+        modalRef.result.then(rs => {
+            if (!rs.status) {
+                this.toastService.show('Rút tiền thất bại. ' + rs.message, 'Thông báo', { classname: 'bg-danger text-light', delay: 1400 });
+            }
+            else {
+                this.toastService.show('Rút tiền thành công!', 'Thông báo', { classname: 'bg-success text-light', delay: 1400 });
+                this.getData();
+            }
+        })
+            .catch(err => { });
+    }
+
+    moChiTietSo(row) {
+        var modalRef = this.modalService.open(ChiTietSoModal, { centered: true, size: 'lg' });
+        modalRef.componentInstance.khachhang = row.khachHang;
+        modalRef.componentInstance.ngaymoso = row.ngayMoSo;
+        modalRef.componentInstance.cmnd = row.cmnd;
+        modalRef.componentInstance.sodu = row.soDu;
+        modalRef.componentInstance.mskh = row.mskh;
         modalRef.result.then(rs => {
             if (!rs.status) {
                 this.toastService.show('Rút tiền thất bại. ' + rs.message, 'Thông báo', { classname: 'bg-danger text-light', delay: 1400 });

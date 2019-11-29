@@ -25,9 +25,9 @@ namespace SoTietKiem.Controllers
                 {
                     list = list.Where(c => c.LoaiTietKiem.Id == loaitietkiem) as IQueryable<SoTk>;
                 }
-                if(mskh != null && mskh.Length == 5)
+                if(mskh != null && mskh.Length >= 9)
                 {
-                    list = list.Where(c => c.Mskh == mskh) as IQueryable<SoTk>;
+                    list = list.Where(c => c.Cmnd == mskh) as IQueryable<SoTk>;
                 }
                 var result = await list.OrderByDescending(ord => ord.NgayMoSo).ToListAsync();
                 return Ok(result);
