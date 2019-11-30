@@ -37,7 +37,7 @@ namespace SoTietKiem.Controllers
                     else soThang = truoc.Month - sau.Value.Month;
                     if (soThang != loaiTietKiem.KyHan)
                     {
-                        if (request.Action == "GUI ") return new { status = false, message = "Vui lòng gửi tiền đúng kỳ hạn." };
+                        if (request.Action == "GUI") return new { status = false, message = "Vui lòng gửi tiền đúng kỳ hạn." };
                     }
                 }
                 var compare = DateTime.Compare(request.Ngay, chitietSoTruoc.NgayGui.Value);
