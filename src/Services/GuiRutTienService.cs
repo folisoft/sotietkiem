@@ -139,6 +139,7 @@ namespace SoTietKiem.Services
                 SoTien = Convert.ToDouble(request.SoTien.ToString()),
                 Ngay = request.Ngay
             };
+
             context.PhieuGuiRutTien.Add(phieuGuiRut);
             if (context.SaveChanges() > 0) return phieuGuiRut;
             else return null;
@@ -157,6 +158,13 @@ namespace SoTietKiem.Services
                 LaiSuat = loaitietkiem.LaiSuat,
 
             };
+            if (nghiepvu == "RUT" || nghiepvu == "DONG")
+            {
+                result.SoTienGui = 0;
+                result.NgayGui = null;
+                result.SoTienRut = phieuGuiTien.SoTien;
+                result.NgayRut = phieuGuiTien.Ngay;
+            }
             result.SoDuDauKy = chitietSoTruoc.SoDuCuoiKy + phieuGuiTien.SoTien;
             return result;
         }
