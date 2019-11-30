@@ -35,10 +35,18 @@ namespace SoTietKiem.Controllers
                     int soThang = 0;
                     if (soNam > 0) soThang = truoc.Month + 12 - sau.Value.Month;
                     else soThang = truoc.Month - sau.Value.Month;
-                    if (soThang != loaiTietKiem.KyHan) return new { status = false, message = "Vui lòng gửi tiền đúng kỳ hạn." };
+                    if (soThang != loaiTietKiem.KyHan)
+                    {
+                        if (request.Action == "GUI ") return new { status = false, message = "Vui lòng gửi tiền đúng kỳ hạn." };
+                    }
+                }
+                var compare = DateTime.Compare(request.Ngay, chitietSoTruoc.NgayGui.Value);
+                if (compare < 0)
+                {
+                    return new { status = false, message = "Rút tiền sau ngày " + chitietSoTruoc.NgayGui.Value.ToString("dd/MM/yyyy") + "." };
                 }
 
-                if (request.SoTien < 100000) return new { status = false, message = "Số tiền gửi phải lớn hơn 100,000 VNĐ." };
+                if (request.SoTien < 100000) return new { status = false, message = "Số tiền gửi tối thiểu phải lớn hơn 100,000 VNĐ." };
 
                 var result = await service.ThemGuiRut(request, soTietKiem, loaiTietKiem, khongKyHan, chitietSoTruoc);
                 return new { status = result };
