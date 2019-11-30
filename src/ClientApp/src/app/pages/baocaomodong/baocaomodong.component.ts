@@ -38,14 +38,33 @@ export class BaoCaoMoDongComponent implements OnInit {
     });
   }
 
+  tongMo = 0;
+  tongDong = 0;
+  tongChenhLech = 0;
+  showTongCong = false;
   getBaoCao(loaiTietKiem: number, ngayChon: string) {
     this._baoCaoService.getBaoCaoMoDong(loaiTietKiem, ngayChon).subscribe((res: BaoCaoMoDongModel[]) => {
       if (res && res.length > 0) {
         this.baocaos = res;
+
+        this.reset();
+        this.showTongCong = true;
+        this.baocaos.map(item => {
+          this.tongMo = this.tongMo + item.tongMo;
+          this.tongDong = this.tongDong + item.tongDong;
+          this.tongChenhLech = this.tongChenhLech + (item.tongMo - item.tongDong);
+        });
       } else {
+        this.showTongCong = false;
         this.baocaos = [];
       }
     })
+  }
+
+  reset() {
+    this.tongMo = 0;
+    this.tongDong = 0;
+    this.tongChenhLech = 0;
   }
 
   onChangeDate(event: any) {

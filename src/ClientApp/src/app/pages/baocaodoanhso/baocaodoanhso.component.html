@@ -56,6 +56,20 @@
                   {{ item.tongThu - item.tongChi }}
                 </td>
               </tr>
+              <tr *ngIf="showTongCong">
+                <td colspan="2">
+                  Tổng Cộng:
+                </td>
+                <td>
+                  {{ tongThu }}
+                </td>
+                <td>
+                  {{ tongChi }}
+                </td>
+                <td>
+                  {{ tongChenhLech }}
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

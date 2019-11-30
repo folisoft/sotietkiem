@@ -24,7 +24,7 @@ namespace SoTietKiem.Controllers
             using (var db = new DatabaseContext(optionsBuilder))
             {
                 var doanhSoThu = from p in db.PhieuGuiRutTien
-                                 join c in db.ChiTietSoTietKiem on p.Mskh equals c.Mskh
+                                 join c in db.ChiTietSoTietKiem on p.Id equals c.PhieuGuiRutTienId
                                  join l in db.LoaiTietKiem on c.LoaiTietKiemId equals l.Id
                                  where (c.NghiepVu == "MO" || c.NghiepVu == "GUI")
                                  && c.NgayGui.Value.Date == ngayChon.Date
@@ -37,10 +37,10 @@ namespace SoTietKiem.Controllers
                                  select new { TongThu = g.Sum(t => t.SoTien), g.Key.LoaiTietKiemId, g.Key.TenLoaiTietKiem };
 
                 var doanhSoChi = from p in db.PhieuGuiRutTien
-                                 join c in db.ChiTietSoTietKiem on p.Mskh equals c.Mskh
+                                 join c in db.ChiTietSoTietKiem on p.Id equals c.PhieuGuiRutTienId
                                  join l in db.LoaiTietKiem on c.LoaiTietKiemId equals l.Id
                                  where (c.NghiepVu == "RUT" || c.NghiepVu == "DONG")
-                                 && c.NgayGui.Value.Date == ngayChon.Date
+                                 && c.NgayRut.Value.Date == ngayChon.Date
                                  select new
                                  {
                                      LoaiTietKiemId = c.LoaiTietKiemId,
@@ -128,29 +128,29 @@ namespace SoTietKiem.Controllers
             using (var db = new DatabaseContext(optionsBuilder))
             {
                 var doanhSoMo = from p in db.PhieuGuiRutTien
-                                 join c in db.ChiTietSoTietKiem on p.Mskh equals c.Mskh
+                                 join c in db.ChiTietSoTietKiem on p.Id equals c.PhieuGuiRutTienId
                                  where c.NghiepVu == "MO"
                                  && c.LoaiTietKiemId == loaiTietKiem
                                  && c.NgayGui.Value.Month == ngayChon.Month
                                  && c.NgayGui.Value.Year == ngayChon.Year
                                 select new
                                  {
-                                     Ngay = p.Ngay.Value.Date,
+                                     Ngay = c.NgayGui.Value.Date,
                                      SoTien = p.SoTien
                                  } into s
                                  group s by new { s.Ngay } into g
                                  select new { TongMo = g.Sum(t => t.SoTien), g.Key.Ngay };
 
                 var doanhSoDong = from p in db.PhieuGuiRutTien
-                                 join c in db.ChiTietSoTietKiem on p.Mskh equals c.Mskh
+                                 join c in db.ChiTietSoTietKiem on p.Id equals c.PhieuGuiRutTienId
                                  join l in db.LoaiTietKiem on c.LoaiTietKiemId equals l.Id
-                                 where c.NghiepVu == "RUT"
+                                 where c.NghiepVu == "DONG"
                                  && c.LoaiTietKiemId == loaiTietKiem
-                                 && c.NgayGui.Value.Month == ngayChon.Month
-                                 && c.NgayGui.Value.Year == ngayChon.Year
+                                 && c.NgayRut.Value.Month == ngayChon.Month
+                                 && c.NgayRut.Value.Year == ngayChon.Year
                                  select new
                                  {
-                                     Ngay = p.Ngay.Value.Date,
+                                     Ngay = c.NgayRut.Value.Date,
                                      SoTien = p.SoTien
                                  } into s
                                  group s by new { s.Ngay } into g
