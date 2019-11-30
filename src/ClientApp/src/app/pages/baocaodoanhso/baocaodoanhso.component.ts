@@ -22,15 +22,34 @@ export class BaoCaoDoanhSoComponent implements OnInit {
     this.getBaoCao(this.ngaychon);
   }
 
+  tongThu = 0;
+  tongChi = 0;
+  tongChenhLech = 0;
+  showTongCong = false;
   getBaoCao(ngayChon: string) {
     this._baoCaoService.getBaoCaoDoanhSo(ngayChon).subscribe((res:BaoCaoModel[]) => {
       if (res && res.length > 0) {
         this.baocaos = res;
+
+        this.reset();
+        this.showTongCong = true;
+        this.baocaos.map(item => {
+          this.tongThu = this.tongThu + item.tongThu;
+          this.tongChi = this.tongChi + item.tongChi;
+          this.tongChenhLech = this.tongChenhLech + (item.tongThu - item.tongChi);
+        });
       }
       else {
+        this.showTongCong = false;
         this.baocaos = [];
       }
     })
+  }
+
+  reset() {
+    this.tongThu = 0;
+    this.tongChi = 0;
+    this.tongChenhLech = 0;
   }
 
   onChangeDate() {
