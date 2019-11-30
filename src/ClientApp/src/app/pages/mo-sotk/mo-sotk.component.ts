@@ -30,11 +30,6 @@ export class MoSoTKComponent implements OnInit {
         });
 
         this.soTietKiem.LoaiTietKiemId = 1;
-        this.soTietKiem.Mskh = 'TK001';
-        this.soTietKiem.KhachHang = 'Lê Hiếu';
-        this.soTietKiem.Cmnd = '365214789';
-        this.soTietKiem.DiaChi = 'ấp Định Mỹ, xã Định Môn, huyện Thới Lai, Tp.CT';
-        this.soTietKiem.SoTienGui = 1000000;
 
         const date = new Date();
         this.minDate = { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() };
