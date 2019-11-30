@@ -52,7 +52,7 @@ export class BaoCaoMoDongComponent implements OnInit {
         this.baocaos.map(item => {
           this.tongMo = this.tongMo + item.tongMo;
           this.tongDong = this.tongDong + item.tongDong;
-          this.tongChenhLech = this.tongChenhLech + (item.tongMo - item.tongDong);
+          this.tongChenhLech = this.tongChenhLech + (item.tongMo + item.tongDong);
         });
       } else {
         this.showTongCong = false;

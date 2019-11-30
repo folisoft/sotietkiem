@@ -36,7 +36,7 @@ export class BaoCaoDoanhSoComponent implements OnInit {
         this.baocaos.map(item => {
           this.tongThu = this.tongThu + item.tongThu;
           this.tongChi = this.tongChi + item.tongChi;
-          this.tongChenhLech = this.tongChenhLech + (item.tongThu - item.tongChi);
+          this.tongChenhLech = this.tongChenhLech + (item.tongThu + item.tongChi);
         });
       }
       else {
